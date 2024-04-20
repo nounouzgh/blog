@@ -1,0 +1,111 @@
+:root{
+    --color-primary:#7380ec;
+    --color-danger:#ff7782;
+    --color-success:#41f1b6;
+    --color-warning:#ffbb55;
+    --color-white:#fff;
+    --color-info-light:#dce1eb;
+    --color-info-darck:#7d8da1;
+    --color-dark:#363949;
+    --color-light:rgba(132,139,200,0.18);
+    --color-prumary-variant:#111e88;
+    --color-dark-variant:#677483;
+    --color-backgroud:#f6f6f9;
+    
+    
+    /*border radius*/
+    --card-border-radius:2em;
+    --border-radius-1:0.4em;
+    --border-radius-1:0.8em;
+    --border-radius-1:1.2em;
+    
+    --card-padding:1em;
+    --padding-1:1.2em;
+    
+    --box-shadow:0 2em 3em var(--color-light);
+    
+     }
+       /*========================dropdownmenuProfile======================*/
+        /*main container for profile need be relative*/
+       .right .top .profile{
+        position: relative;
+        display: flex; /*afficher in line*/
+        gap: 2rem;/*spece bewtcih profile and tex and name*/
+        text-align: right;
+    }    
+/*create contenu for push down menu*/
+.right .top .profile .action::before{
+    content: '';
+    position: relative;/*for it mouve*/
+    display: flex;
+    height: 4rem;
+    width: 100%;
+    transition: all 300ms ease; /*smoute affichage when i houver*/
+    z-index: 0;
+    padding: 2%;
+    
+    }
+
+        /*my content div menu*/
+       .right .top .profile .action{
+        content: '';
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        right: 1rem;
+        top: calc(100%+2.2rem);
+        width: 9rem;
+        min-height: 3rem;
+        transition: 0s;
+        box-shadow: var(--box-shadow);
+        background:transparent;
+        border-radius: var(--card-border-radius);
+        z-index: 1;
+        display: none;
+       }
+
+       /*all profile size pictur*/
+    .profile-photo{
+    width: 3em;
+    height: 3em;
+    border-radius: 60%;/*for make it sercl*/
+    overflow: hidden;/**aplay secrl boder radance*/
+    z-index: 2; /* Places this div above the other one */
+    cursor: pointer;
+    }
+
+    
+        /*control list*/
+        .right .top .profile .action ul{
+            
+            list-style: none;/*remouve list icone*/
+            position: relative;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 0.8rem;
+            transition: all 300ms ease; /*smoute affichage when i houver*/
+            z-index: 12;
+            
+        }
+        .right .top .profile .action ul li{
+            padding: 0.7rem 0.9rem;
+            transition: 0.5s;
+            border-top: 1px solid #e5e5e5;
+            z-index: 15;
+            
+        }
+        
+
+        .right .top .profile .action ul li:hover{
+             background:  #ecebeb;
+             
+
+        }
+  
+    
+/*=================end Drop-down Profile Menu ===========*/
+
+
+        

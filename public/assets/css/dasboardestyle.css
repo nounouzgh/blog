@@ -1,0 +1,664 @@
+
+/*importe tupe of write*/
+@import url("https://fonts.googleapis.com/css2?family=Poppings:wght@300;400;500;600;700;800&display=swap");
+
+/*roote variable acc them every where in this css*/
+:root{
+--color-primary:#7380ec;
+--color-danger:#ff7782;
+--color-success:#41f1b6;
+--color-warning:#ffbb55;
+--color-white:#fff;
+--color-info-light:#dce1eb;
+--color-info-darck:#7d8da1;
+--color-dark:#363949;
+--color-light:rgba(132,139,200,0.18);
+--color-prumary-variant:#111e88;
+--color-dark-variant:#677483;
+--color-backgroud:#f6f6f9;
+
+
+/*border radius*/
+--card-border-radius:2em;
+--border-radius-1:0.4em;
+--border-radius-1:0.8em;
+--border-radius-1:1.2em;
+
+--card-padding:1em;
+--padding-1:1.2em;
+
+--box-shadow:0 2em 3em var(--color-light);
+
+
+}
+/*create this class for switch betwin colors*/
+.dark-theme-variables{
+    --color-background:#181a1e;
+    --color-white:#202528;
+    --color-dark:#edeffd;
+    --color-dark-variant:#a3bdcc;
+    --color-light:rgba(0,0,0,0.4);
+    --box-shadow:0 2rem 3rem var(--color-light);
+    
+}
+
+* {
+/* espace around elements*/
+margin: 0;
+/*espace dans le counteur*/
+padding: 0;
+/*la line draw au conteur du l element*/
+outline: 0;
+appearance: none;
+/*controll du cader*/
+ border: 0;
+text-decoration: none;
+box-sizing: border-box;
+}
+
+html{
+font-size: 14px;
+width: 100vw;
+height: 100vh;
+
+}
+body{
+    display: block; /*desplace block for nave bare & and conener*/
+    width: 100vw;
+    height: 100vh;
+    font-family: poppins,sans-serif;
+    font-size: 0.88em;
+    background: var(--color-backgroud);
+    user-select: none;
+    overflow-x: hidden;
+}
+
+
+/*sytel for side bare menu  default vallue for container that will go in main container*/
+
+/*       work will be in Grid Layout  main container
+==========================================================
+                                  Header
+===========================================================                                  
+Menu  =                  Main    =       Right            =
+      =                          =                        =
+      =====================================================
+      =                           Footer                  =
+===========================================================*/
+.container{
+    
+    display: grid; /*this one is for is will be */
+    width: 96%;
+    margin: auto;
+    /*add background: red   her to see where is ur container and emouve it when ur done */
+    /* background: red; */
+    gap: 1.8em;
+    /*grid template from letf to right*/
+    grid-template-columns: 15em auto 25em; /* how to size from left to right speace for eatch one
+    is speace for eatch one auo when 1 end s2 is will be put in*/ 
+    
+    }
+/*default vallue for all this balise*/
+/*debut*/
+a{
+color: var(--color-danger);
+
+
+}
+
+img{
+display: block;
+width: 100%;
+}
+
+h1{
+font-weight: 800;
+font-size: 1.8em;
+}
+h2{
+    font-size: 1.4em;
+}
+h3{
+    font-size: 0.87em;
+}
+h4{
+    font-size: 0.8em;
+}
+h5{
+    font-size: 0.77em;
+}
+
+small{
+
+font-size: 0.75em;
+
+}
+    
+p{
+
+    color: var(--color-dark-variant);
+}
+b{
+
+    color: var(--color-dark);
+}
+
+/*small text down like last time u did somting  alomose u dont see it */
+.text-muted{
+position: relative;
+color:var(color --color-info-darck);
+}
+
+/*declation of some color*/
+.primary{
+color: var(--color-primary);
+}
+.danger{
+
+    color: var(--color-danger);
+}
+.success{
+    color: var(--color-success);
+}
+.warning{
+color: var(--color-warning);
+}
+
+
+/*sytel for side bare menu */
+/*is will be 3 sction 1 one is define top .container */
+
+/*seconde section is logo controll and resize*/
+aside{
+height: 100vh;
+/*for see my balise and emouve backgroud later*/
+
+
+
+}
+
+/*logo */
+aside .top{
+    /*for what we rite go in top wite too */
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*lower logo in aside div*/
+    margin-top: 1.4em;
+}
+
+/*desplay elent in top in arow*/
+aside .logo {
+
+display: flex;
+/*speace*/
+gap: 0.8em;
+
+
+}
+/*controll image dans le aside top*/
+aside .logo img{
+/*resize  Long & larg*/
+width: 2em;
+height: 2em;
+}
+aside span{
+
+    line-height: 2em;
+}
+
+/*hide close*/
+aside .close
+{
+display:  none;
+}
+/*   and SIDE BARE MENU*/
+
+aside .sidebare{
+position:  fixed;
+display: flex;/*in arow left to right in default*/
+flex-direction: column;/*but with this is will from top to down*/
+position: relative; /*ucan mouve it in where u want if u do left or top and give how mouve u awnt mouve it*/ 
+height: 86vh;   /* langeur of menue*/
+top: 3em;  /*go down few pxel*/
+}
+
+aside h3{
+font-size: 500;
+
+}
+
+/*links a in side are for get them good structure */
+aside .sidebare a {
+display: flex;
+color:var(--color-info-darck);
+margin-left: 2em;
+gap:1em;
+align-items: center;
+position: relative;
+height: 3.7em;
+transition: all 300ms ease; /*smoute affichage when i houver*/
+
+}
+
+aside .sidebare a span {
+font-size: 1.6em;
+transition: all 300ms ease; /*smouve afichage when i houver*/
+}
+
+/*for put log down in side bare and mouve it down far to it botown*/
+aside .sidebare a:last-child{
+    position: absolute;
+    bottom: 2em;
+    width: 100%;
+    }
+/*------------------------------active in dashboard active class----------------------------------*/
+/*for all class in side bare a who have active class*/
+aside .sidebare a.active{
+background: var(--color-light);
+color: var(--color-primary);
+margin-left: 0;
+}
+
+/*create bleu in left for class*/
+
+
+aside .sidebare a.active::before{
+    content: "";
+    width: 6px;
+    height: 100%;
+    background: var(--color-primary);
+}
+/*howerring*/
+aside .sidebare a.active span{
+    color: var(--color-primary);
+    margin-left: calc(1em - 3px);
+    }
+    aside .sidebare a:hover{
+
+        color:var(--color-primary)
+    }
+    /*dont work hover to now*/
+    aside .sidebare a:hover span{
+    margin-left: 1.5em;
+    }
+
+    /*desine rede sercel and put red color in nmber msg*/
+aside .sidebare .mesage-count{
+
+    background: var(--color-danger);
+    color: var(--color-white);
+    padding: 2px 10px; /*lower longeur*/
+    font-size: 11px;/*lower largeur*/
+    /*L*L= sercel*/
+    border-radius: var(--border-radius-1);
+}
+
+
+/*===========================Main=====================================*/
+/*===========================Main=====================================*/
+
+main{
+margin-top: 1.1em;
+}
+
+main .date{
+display: inline-block;
+background: var(--color-light);
+border-radius: var(--border-radius-1);
+margin-top: 1em;
+padding: 0.5em 1.6em;
+}
+
+main .date input[type="date"]{
+background:  transparent;
+color: var(--color-dark);
+}
+
+main .insights{
+display: grid;/*affier en cader */
+grid-template-columns: repeat(3,1fr); /*comien en aficher par 1 line and revenire a la line*/
+gap: 1.8em;/*espace e nter les bordire*/
+}
+/*individial dive creation de cader for eatch one*/
+main .insights > div{
+background: var(--color-white);
+padding: var(--card-padding);
+border-radius: var(--card-border-radius);
+margin-top: 1em;
+box-shadow: var(--box-shadow);
+transition: all 300ms ease; /*smouve affichage when i houver*/
+
+} 
+
+
+main .insights > div:hover{
+box-sizing: none ;
+background: var(--color-light);
+}
+
+main .insights > div span{
+
+    background:var(--color-primary);
+    padding: 0.5em;
+    border-radius: 50%;
+    color: var(--color-white);
+    font-size: 2em;
+    
+}
+
+
+/*color du log for bordur*/
+main .insights > div.sales span{
+    background: var(--color-dark);
+    }
+
+main .insights > div.expences span{
+    background: var(--color-danger);
+    }
+
+    
+
+main .insights > div.income span{
+    background: var(--color-success);
+    }
+    
+/*find */
+
+main .insights > div .middle{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+main .insights h3{
+
+    margin: 1em 0 0.6em;
+    font-size: 1em;
+}
+
+
+/*minimaze  them*/
+main .insights .progress{
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+/*resize dive for paladin for info get in box*/
+main .insights svg{
+    width: 7em;
+    height: 7em;
+
+}
+    /*size svg slower*/
+main .insights svg circle{
+fill:none;
+stroke:var(--color-primary);/*defaul sier sircle if no class*/
+stroke-width: 14;
+stroke-linecap: round;
+transform: translate(5px,5px);
+stroke-dasharray: 110;
+stroke-dashoffset: 92;
+        }
+    
+    /*ajust secle her*/
+    /*meter un sercl size*/
+    main .insights .sales svg circle{
+        stroke-dasharray: -30;
+        stroke-dashoffset: 200;
+    }
+    main .insights .expences svg circle{
+        stroke-dasharray: 90;
+        stroke-dashoffset: 92;
+    }
+    main .insights .income svg circle{
+        stroke-dasharray: 110;
+        stroke-dashoffset: 35;
+    }
+/*for put nmber in mid of circl for best view*/
+main .insights .progress .number{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*=========================end of top of main===================*/
+/*=========================name time for down of of top of main===================*/
+/*================recent Order CSS======================*/
+
+main .recent-order {
+
+margin-top: 2rem; /* just mouve it down for is will not close top top one */
+
+}
+
+main .recent-order h2{
+    margin-bottom: 0.8rem; /*give speace to down betwin titler of tanble and name data*/
+
+}
+main .recent-order table{
+ background: var(--color-white);
+ width: 100%; /*tak all size u can from ur mader contaner in ur line */
+ border-radius: var(--card-border-radius);/*create nice corner left and right for our table*/ 
+ padding: var(--card-padding); /*make padding biger  for nice view*/
+ text-align: center; /*center le text in table*/
+ box-shadow: var(--box-shadow); /*give shadow to box for nice view too */
+transition:  all 300ms ease; 
+}
+
+main .recent-order table:hover{ 
+
+    box-shadow:none;
+
+}
+/*view for  controll speace betwin line*/
+main table tbody td{
+    height: 2.8em; /*for make speace bewtin td*/
+    border-bottom: 0.5em solid var(--color-light); /*make small line down in line data*/
+    color: var(--color-dark-variant); /*color of speace in td*/
+}
+
+/*last line in table personal setting*/
+main table tbody tr:last-child td{
+border: none; /*le cader */
+}
+
+/*seting for a down table*/
+main .recent-order a{
+text-align: center;
+display: block;
+margin: 1rem auto;
+color: var(--color-primary);
+} 
+
+/*================end recent Order CSS======================*/
+
+
+/*================RIGHT SIDE CSS============================*/
+.right{ /*left side nave*/
+margin-top: 1.4em; /*make conener of all left side menu to go down 1.4 for perpus fiew*/
+
+}
+
+.right .top {
+display: flex; /*desply  in lines her same line*/
+justify-content: end;/*put them to the right side of the line*/
+gap: 2rem; /*speace betwin eatch element*/
+}
+.right .top #menu-btn{
+    display: none;/*hid boton*/
+}
+
+/*view setting defaul for mode shower*/
+.right .theme-toggler{
+background: var(--color-light); /*color*/
+display: flex;  /*desply  in lines her same line*/
+justify-content: space-between; /*put speace betwin elemnt*/
+align-items: center; /*get ilement down to center*/
+height: 1.6rem;
+width: 4.2rem;
+cursor: pointer;
+border-radius: var(--border-radius-1);/*remouve conteur of elment make it like cercl*/
+z-index: 2;
+}
+/*switch fon image of icon and slowe rthem*/
+.right .theme-toggler span{
+    font-size: 1.2rem; /*resize mode*/
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*create bleu color when i click in mode */
+.right .theme-toggler span.active{
+background: var(--color-primary);
+color: white;
+border-radius: var(--border-radius-1);
+
+}
+
+
+/*===========================END PROFILE========================================*/
+
+/*===============================DEBUT FOR RECENT UPDATE=========================*/
+
+.right .recent-updates{
+
+    margin-top: 1rem; /*make it far from menu one*/
+}
+
+.right .recent-updates h2{
+    margin-bottom: 0.8rem;
+}
+
+/*disane coll view for eatch update*/
+.right .recent-updates .updates{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);/*make arder*/
+    box-shadow:  var(--box-shadow);
+    transition: all 300ms ease;
+}
+.right .recent-updates .updates:hover{
+    box-shadow:  none;   
+}  
+
+/*fix affichage + text */
+.right .recent-updates .updates .update{
+    display: grid;  
+    grid-template-columns: 2.4em auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  
+
+} 
+/*create mouvement de selection dans les update top right*/
+.right .recent-updates .updates .update:hover{
+    display: flex;
+    color:var(--color-info-darck);
+    margin-left: 0.3em;
+    align-items: center;
+    position: relative;
+    transition: all 300ms ease; /*smoute affichage when i houver*/
+}  
+
+/*-----------end of recent update section in right side--------------*/
+
+/*---------------------sallanalytics-----------------------------*/
+
+.right .sales-analytics {
+border-top: 1em; /*get it down not close to to border*/
+}
+
+/*title farm from info*/
+.right .sales-analytics h2{
+margin-bottom: 0.8em;
+}
+
+/*set view for border items*/
+.right .sales-analytics .item{
+background: var(--color-white);
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 0.7rem;
+/*this 2 r for mack bordire*/
+padding: 1.4rem var(--card-padding);
+border-radius: var(--border-radius-1);
+box-shadow: var(--box-shadow);
+transition: all 300ms ease;
+}
+
+.right .sales-analytics .item:hover{
+box-shadow: none;
+}
+
+/*for controll items border for lower*/
+.right .sales-analytics .item .right{
+    display: flex;
+    justify-content: space-between;/*put speace betwin eatch balise*/
+    align-items: start;
+    margin: 0;  /*no contour*/
+    width: 100%; /*use all speace*/
+
+    }
+
+/*create mouvment de selection dans les update*/
+.right .sales-analytics .item:hover{
+    display: flex;
+    color:var(--color-info-darck);
+    margin-left: 0.2em;
+    align-items: center;
+    position: relative;
+    transition: all 300ms ease; /*smoute affichage when i houver*/
+}
+
+/*give icone salles color and sharp cercl standar setting*/
+.right .sales-analytics .item .icon{
+padding: 0.2rem; /*agrandir*/
+color: white;
+border-radius: 60%; /*crcel*/
+background:var(--color-primary);/*give icome color*/
+display: flex;
+align-items: center;
+}
+
+
+.right .sales-analytics .item.offline .icon{
+    background:var(--color-danger);/*give icome color*/
+}
+
+.right .sales-analytics .item.costomers .icon{
+    background:var(--color-success);/*give icome color*/
+}
+
+/*create desine transparent for boten*/
+.right .sales-analytics .add-product{
+    background: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    }
+/*cnter Elent and is element center*/
+    .right .sales-analytics .add-product div{
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+    .right .sales-analytics .add-product div h3{
+        font-weight: 700;
+    }
+       /*===============done with RIGHT SIDE ====*/

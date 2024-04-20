@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+x-application-logo{
+    margin-top: 50px;
+
+}
