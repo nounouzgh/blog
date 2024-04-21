@@ -296,34 +296,51 @@
                 <h2> Recent Update</h2>
                 <div class="updates">
 
-                    <x-update 
-                    :profileNumber="1"
-                    :name="'Mike Tyzon'"
-                    :cour="'informatique'"
-                    :description="'intergation'"
-                    :timer="'2 minutes ago'"
-                />
-
-
-                    <x-update 
-                    :profileNumber="1"
-                    :name="'Mike Tyzon'"
-                    :cour="'informatique'"
-                    :description="'intergation'"
-                    :timer="'2 minutes ago'"
-                />
-                
-
-
+                    <div class="update">
+                        <!--profile photo-->
+                        <div class="profile-photo">
+                            <img src="assets/images/profile-1.png">
         
-                <x-update 
-                :profileNumber="1"
-                :name="'Mike Tyzon'"
-                :cour="'informatique'"
-                :description="'intergation'"
-                :timer="'2 minutes ago'"
-            />
+                        </div>
+                        <!-- mesage -->
+                        <div class ="message">
         
+                            <p><b> Mike Tyzon </b>recive order of night lech GPS drone </p>
+                            <small class="text-muted"> 2 minutes ago</small>
+                        </div>
+        
+                    </div>
+        
+                    <div class="update">
+                        <!--profile photo-->
+                        <div class="profile-photo">
+                            <img src="assets/images/profile-1.png">
+        
+                        </div>
+                        <!-- mesage -->
+                        <div class ="message">
+        
+                            <p><b> Mike Tyzon </b>recive order of night lech GPS drone </p>
+                            <small class="text-muted"> 2 minutes ago</small>
+                        </div>                    
+        
+                    </div>
+        
+        
+                    <div class="update">
+                        <!--profile photo-->
+                        <div class="profile-photo">
+                            <img src="assets/images/profile-1.png">
+        
+                        </div>
+                        <!-- mesage -->
+                        <div class ="message">
+        
+                            <p><b> Mike Tyzon </b>recive order of night lech GPS drone </p>
+                            <small class="text-muted"> 2 minutes ago</small>
+                        </div>               
+        
+                    </div>
 
                 </div>            
             
@@ -357,9 +374,7 @@
             :percentage="'39%'" 
             :count="'3849'" 
             />
-     
-          
-        
+
                <!-- Include the component with data -->
              
             <x-add-resource-button icon="add" title="Add Product" />
