@@ -40,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
         
         View::composer('component.announce.profile', 'App\View\Components\announce\profile');
    
+        View::composer('component.announce.ListAnnounce', 'App\View\Components\announce\ListAnnounce');
    
    
     }

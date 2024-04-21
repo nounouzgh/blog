@@ -32,10 +32,11 @@ Route::middleware('auth')->group(function () {
 
 // test controlle pase data and get it in blade test
 //Route::get('/test', [test::class, 'Userwithrole']);
-
+/*
     Route::get('/lol', function () {
         return view('1to call back if err.dashboard');
-    });
+    });*/
+    Route::get('/lol', [test::class, 'index']);
 
 require __DIR__.'/NoRole.php';
 require __DIR__.'/auth.php';

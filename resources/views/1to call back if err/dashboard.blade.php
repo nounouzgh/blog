@@ -195,56 +195,8 @@
      
         <!-- =================end class insights=================-->
         <!-- =================Bebut Resent ORDER=================-->
-        <div class="recent-order">
+        <x-ListAnnounce :resources="$resources" />
 
-            <h2>Recent Order</h2>
-            <table>
-                  <thead>
-                    <!--header of table-->
-                    <tr>
-                        <th>Produit Name</th>
-                        <th>Produit Number</th>
-                        <th>Payment</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                
-                    <tbody>
-                        <!-- her u will put ur info product-->
-                        <tr>
-                            <td>Foldale Mini Drone</td>
-                            <td>85631</td>
-                            <td>due</td>
-                            <td class="warning">Panding</td> <!--for put red colore-->
-                            <td class="primary">Detais</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Foldale Mini Drone</td>
-                            <td>85631</td>
-                            <td>due</td>
-                            <td class="warning">Panding</td> <!--for put red colore-->
-                            <td class="primary">Detais</td>
-                        </tr>
-                        <tr>
-                            <td>Foldale Mini Drone</td>
-                            <td>85631</td>
-                            <td>due</td>
-                            <td class="warning">Panding</td> <!--for put red colore-->
-                            <td class="primary">Detais</td>
-                        </tr>
-                        <tr>
-                            <td>Foldale Mini Drone</td>
-                            <td>85631</td>
-                            <td>due</td>
-                            <td class="warning">Panding</td> <!--for put red colore-->
-                            <td class="primary">Detais</td>
-                        </tr>
-                    </tbody>
-            </table>
-            <a href=""> how all</a>
-        </div>
        <!-- =================end  Resent ORDER=================-->
         </main>
         <!-- =======================end main==================--->
