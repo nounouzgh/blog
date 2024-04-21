@@ -253,39 +253,10 @@
            <div class="right">
 
             <!--bebut top-->
-                <div class="top">
-                    <!--menu buton-->
-                    
-
-                     <button id="menu-btn">
-                        <span class="material-symbols-outlined">menu</span>
-                    </button>
-                    <!-- icon for mode darck and light -->
-                    <div class="theme-toggler">
-                        <span class="material-symbols-outlined active">light_mode</span>
-                        <span class="material-symbols-outlined">dark_mode</span>
-                    
-            
-                    </div>
-                    <!-- Profile-->
-                    <div class="profile">
-                        <!-- text next to profile icone -->
-                        <div class="info"><p>Hey , </p> <b>Daniel</b>
-                            <small class="text-muted">Admine</small>
-                        </div>
-                       
-                        <!--profile photo-->
-                        <div class="profile-photo">
-                            <img src="assets/images/profile-1.png" alt="Click to Open Menu" id="menuImage" >
-                        </div>
-                        <div class="action" id="action">                            
-                         
-                                @include('layouts.navigation')                          
-
-                        </div>
-                    </div>
-                    <!-- end Profile-->
-                </div>
+            @php
+            $user = Auth::guard('compte')->user()->user;
+            @endphp
+          <x-profile name="{{ $user->name }}" role="{{ $user->role->name }}" profileNumber="1" />
             <!--end top-->
 
             <!--recent update-->

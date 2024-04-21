@@ -37,6 +37,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('component.announce.itemoffline', 'App\View\Components\announce\itemoffline');
    
         View::composer('component.announce.update', 'App\View\Components\announce\update');
+        
+        View::composer('component.announce.profile', 'App\View\Components\announce\profile');
+   
    
    
     }
