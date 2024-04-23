@@ -5,9 +5,7 @@ namespace App\Providers;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\View\Components\AddResourceButton;
-use App\View\Components\OnlineItem; // Import the OnlineItem component
-
+use App\View\Components\CardAnnounceIncome;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -42,6 +40,6 @@ class AppServiceProvider extends ServiceProvider
    
         View::composer('component.announce.ListAnnounce', 'App\View\Components\announce\ListAnnounce');
    
-   
-    }
+
+   }
 }

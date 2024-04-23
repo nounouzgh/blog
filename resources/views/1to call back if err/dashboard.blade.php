@@ -115,80 +115,18 @@
                 <!-- her will be where u put  small dive close to eatch other 1/2 main div-->
 
                 <!--debut sell -->
-                <div class="sales">
-                 <!-- this class have 2 positiontop one and down one-->
-                   <!-- her icon will be top  and we mouve icon left in css -->
-                    <span class="material-symbols-outlined"> analytics </span>
-                    <div class="middle">
-                        <!--  will be main cader for 1 sell  we  will have left  + progress -->
-                        <div class="left">
-                            <h3>total sell</h3>
-                            <h1>$25.024</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx='38' cy='38' r='36'>
-                                </circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <small class="text-muted"> last 24 Hours </small>
-                </div>
+                
             <!-- end of sells-->
+<x-card-announce-salle salle="600.024" progress-percentage="31%" time-frame="last 24 Hours" />
 
             <!--debut Expences -->
-            <div class="expences">
-                <!-- this class have 2 positiontop one and down one-->
-                  <!-- her icon will be top  and we mouve icon left in css -->
-                   <span class="material-symbols-outlined"> analytics </span>
-                   <div class="middle">
-                       <!--  will be main cader for 1 sell  we  will have left  + progress -->
-                       <div class="left">
-                           <h3>total expences</h3>
-                           <h1>$250.024</h1>
-                       </div>
-                       <div class="progress">
-                           <svg>
-                               <circle cx='38' cy='38' r='36'>
-                               </circle>
-                           </svg>
-                           <div class="number">
-                               <p>61%</p>
-                           </div>
-                       </div>
+<x-card-announce-expenses total-expenses="600.024" progress-percentage="31%" time-frame="last 24 Hours" />
 
-                   </div>
-                   <small class="text-muted"> last 24 Hours </small>
-               </div>
            <!-- end of Expences-->
    <!--debut income -->
-   <div class="income">
-    <!-- this class have 2 positiontop one and down one-->
-      <!-- her icon will be top  and we mouve icon left in css -->
-       <span class="material-symbols-outlined"> analytics </span>
-       <div class="middle">
-           <!--  will be main cader for 1 sell  we  will have left  + progress -->
-           <div class="left">
-               <h3>total income</h3>
-               <h1>$600.024</h1>
-           </div>
-           <div class="progress">
-               <svg>
-                   <circle cx='38' cy='38' r='36'>
-                   </circle>
-               </svg>
-               <div class="number">
-                   <p>31%</p>
-               </div>
-           </div>
+<!-- Example of calling the CaderIncome component -->
+<x-card-announce-income total-income="600.024" progress-percentage="31%" time-frame="last 24 Hours" />
 
-       </div>
-       <small class="text-muted"> last 24 Hours </small>
-   </div>
     <!--end income -->
                 
     </div>
@@ -258,36 +196,36 @@
              <div class="sales-analytics">
             
                 <h2>Sales Analytics</h2>
-  
-            <x-itemcostomers
-            :icon="'forum'" 
-            :title="'Online Forum'" 
-            :subtitle="'Last 24 hours'" 
-            :percentage="'60%'" 
-            :count="'3849'" 
-            />
-            <x-itemoffline
-            :icon="'forum'" 
-            :title="'Online Forum'" 
-            :subtitle="'Last 24 hours'" 
-            :percentage="'39%'" 
-            :count="'3849'" 
-            />
-            <x-itemonline
-            :icon="'forum'" 
-            :title="'Online Forum'" 
-            :subtitle="'Last 24 hours'" 
-            :percentage="'39%'" 
-            :count="'3849'" 
-            />
-     
+    
+                <x-itemcostomers
+                :icon="'forum'" 
+                :title="'Online Forum'" 
+                :subtitle="'Last 24 hours'" 
+                :percentage="'60%'" 
+                :count="'3849'" 
+                />
+                <x-itemoffline
+                :icon="'forum'" 
+                :title="'Online Forum'" 
+                :subtitle="'Last 24 hours'" 
+                :percentage="'39%'" 
+                :count="'3849'" 
+                />
+                <x-itemonline
+                :icon="'forum'" 
+                :title="'Online Forum'" 
+                :subtitle="'Last 24 hours'" 
+                :percentage="'39%'" 
+                :count="'3849'" 
+                />
+        
           
         
                <!-- Include the component with data -->
              
-            <x-add-resource-button icon="add" title="Add Product" />
+                 <x-add-resource-button icon="add" title="Add Product" />
 
-        </div>
+             </div>
         
            <!-- sales-analytics--> 
            </div>
