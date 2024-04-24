@@ -16,10 +16,27 @@
                 <td>{{ $resource->name }}</td>
                 <td>{{ $resource->description }}</td>
                 <td>{{ $resource->lien }}</td>
-            </tr>
+                <td>
+                 
+                    <!-- Edit Resource Button -->
+                    <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                  <!-- View File 1 Button -->
+                  <a href="{{ $resource->fileUrl }}" target="_blank" class="btn btn-secondary btn-sm">View File 1</a>
+                  <!-- View File 2 Button -->
+                  <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm">View File2</a>
+    
+                  <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm">comments</a>
+                 <!-- Delete Resource Button -->
+                 <form action="{{ route('resource.destroy', $resource->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                </tr>
+    
             @empty
             <tr>
-                <td colspan="5">No resources found.</td>
+                <td colspan="3">No resources found.</td>
             </tr>
             @endforelse
         </tbody>

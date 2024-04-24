@@ -72,8 +72,11 @@
                 </form>
                 <!-- Edit Resource Button -->
                 <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary btn-sm">Edit</a>
-              <!-- View File Button -->
-              <a href="{{ $resource->fileUrl }}" target="_blank" class="btn btn-secondary btn-sm">View File</a>
+              <!-- View File 1 Button -->
+              <a href="{{ $resource->fileUrl }}" target="_blank" class="btn btn-secondary btn-sm">View File 1</a>
+              <!-- View File 2 Button -->
+              <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm">View File2</a>
+
               <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm">comments</a>
             </tr>
 

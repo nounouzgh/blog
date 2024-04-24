@@ -35,6 +35,9 @@ Route::get('/storage/{file}', function ($file) {
     return response()->file($path);
 })->where('file', '.*');
 
+// view fille resourece verrssion 2
+Route::get('/resource/{id}/view-file', [ResourceController::class, 'viewFile'])->name('resource.view-file');
+
 
 
 // Define the routes

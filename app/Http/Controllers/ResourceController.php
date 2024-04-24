@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use Symfony\Component\HttpFoundation\StreamedResponse;
 class ResourceController extends Controller
 {
     
@@ -40,22 +40,24 @@ public function index()
 
     // Method to delete a resource work
    // Method to delete a resource
-public function destroy($id)
-{
-    // Find the resource by its ID
-    $resource = Resource::find($id);
+    public function destroy($id)
+    {
+        // Find the resource by its ID
+        $resource = Resource::find($id);
 
-    // Check if the resource exists
-    if (!$resource) {
-        return response()->json(['message' => 'Resource not found'], 404);
-    }
+        // Check if the resource exists
+        if (!$resource) {
+            return response()->json(['message' => 'Resource not found'], 404);
+        }
 
-    // Delete the resource
-    $resource->delete();
+        // Delete the resource
+        $resource->delete();
 
-    // Redirect back with a success message
-    return redirect()->route('resource.index')->with('success', 'Resource deleted successfully');
-}
+        // Redirect back with a success message
+        // return redirect()->route('resource.index')->with('success', 'Resource deleted successfully');
+    // Redirect back to the current page with a success message and hash fragment
+return redirect()->back()->with('success', 'Resource deleted successfully');
+ }
 
     
 
@@ -174,4 +176,38 @@ public function search(Request $request)
 }
 
 
+// show fille 2
+public function viewFile($id)
+{
+    // Find the resource by its ID
+    $resource = Resource::find($id);
+
+    // Check if the resource exists
+    if (!$resource) {
+        return response()->json(['message' => 'Resource not found'], 404);
+    }
+
+    // Specify the file path relative to the root directory of the storage disk
+    // i did need to add public for show resource
+    $filePath = 'public/' . $resource->lien;
+
+   
+    // Check if the file exists
+    if (!Storage::exists($filePath)) {
+        return response()->json(['message' => 'File not found'], 404);
+    }
+
+    // Get the file's MIME type
+    $mimeType = Storage::mimeType($filePath);
+
+    // Return the file as a streamed response
+    return response()->stream(function () use ($filePath) {
+        $stream = Storage::readStream($filePath);
+        fpassthru($stream);
+        fclose($stream);
+    }, 200, [
+        'Content-Type' => $mimeType,
+        'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"',
+    ]);
+}
 }
