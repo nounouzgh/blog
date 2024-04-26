@@ -71,15 +71,18 @@ class RegisteredUserController extends Controller
          // Determine the type of user and create the related model
          if ($request->role === "student") {
              $user->student()->create([
-                 // Add other fields as needed
+                'specialite' => $request->input('specialite'),
+                'date_naissance' => $request->input('date_naissance'),
+                'niveau' => $request->input('niveau'),
              ]);
          } elseif ($request->role === "teacher") {
              $user->teacher()->create([
-                 // Add other fields as needed
+                'specialite' => $request->input('specialite'),
+                'grade' => $request->input('grade'),
              ]);
          } elseif ($request->role === "supervisor") {
              $user->supervisor()->create([
-                 // Add other fields as needed
+                'specialite' => $request->input('specialite'),
              ]);
          }
      
