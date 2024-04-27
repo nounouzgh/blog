@@ -34,9 +34,10 @@ class User extends Authenticatable
         return $this->hasOne(Teacher::class);
     }
 
-    public function supervisor()
+    public function expert()
     {
-        return $this->hasOne(Supervisor::class);
+        // Define the relationship with the Expert model if it exists
+        return $this->hasOne(Expert::class);
     }
 
   

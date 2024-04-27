@@ -4,7 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\Teacher;
-use App\Http\Middleware\Supervisor;
+use App\Http\Middleware\expert;
 use App\Http\Middleware\Student;
 use App\Http\Middleware\Guest;
 use App\Http\Middleware\admin;
@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
 
         $middleware->alias([
-            'supervisor'=>Supervisor::class,
+            'expert'=>expert::class,
             'teacher'=>Teacher::class,
             'student'=>Student::class,
             'guest'=>Guest::class,

@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Expert;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 
@@ -135,6 +136,18 @@ public function registerUser($userData)
                 $user->teacher()->save($teacher);
             }
         }
+        elseif ($validatedData['role'] === 'expert') {
+            if ($user->expert) {
+                $user->expert()->update([
+                    'specialite' => $userData['specialite'], // Assuming you have a 'specialite' field in $userData
+               ]);
+            } else {
+                $expert = new expert([
+                    'specialite' => $userData['specialite'],
+                ]);
+                $user->expert()->save($expert);
+            }
+        }
 
         // Optionally, you can return the updated user instance
         return $user;
@@ -145,8 +158,8 @@ public function registerUser($userData)
     {
         if ($userRole == "teacher") {
             return $next($request);
-        } elseif ($userRole == "Supervisor") {
-            return redirect()->route('supervisor.dashboard');
+        } elseif ($userRole == "expert") {
+            return redirect()->route('expert.dashboard');
         } elseif ($userRole == "student") {
             return redirect()->route('student.dashboard');
         } else {

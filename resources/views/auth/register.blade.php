@@ -36,7 +36,7 @@
             <select id="role" name="role" class="block mt-1 w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300">
                 <option value="student">Student</option>
                 <option value="teacher">Teacher</option>
-                <option value="supervisor">Supervisor</option>
+                <option value="expert">expert</option>
             </select>
             <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>
@@ -75,9 +75,9 @@
                 <x-text-input id="grade" class="block mt-1 w-full" type="text" name="grade" :value="old('grade')" autocomplete="grade" />
                 <x-input-error :messages="$errors->get('grade')" class="mt-2" />
             `;
-        } else if (role === 'supervisor') {
+        } else if (role === 'expert') {
             additionalFieldsDiv.innerHTML = `
-                <!-- Input fields for editing supervisor information -->
+                <!-- Input fields for editing expert information -->
                 <x-input-label for="specialite" class="block mt-4">Specialite:</x-input-label>
                 <x-text-input id="specialite" class="block mt-1 w-full" type="text" name="specialite" :value="old('specialite')" autocomplete="specialite" />
                 <x-input-error :messages="$errors->get('specialite')" class="mt-2" />

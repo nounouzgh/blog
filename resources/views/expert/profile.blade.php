@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Supervisor Information</title>
+    <title>Show expert Information</title>
     <!-- Add CSS for success message -->
     <style>
         .success-message {
@@ -13,28 +13,28 @@
     </style>
 </head>
 <body>
-    <h1>Show Supervisor Information</h1>
-    <h2>Supervisor Details:</h2>
+    <h1>Show expert Information</h1>
+    <h2>expert Details:</h2>
 
     <!-- Display current information -->
     <p>Name: {{ $user->name }}</p>
     <p>Compte Email: {{ $compte->email }}</p>
-    <p>Supervisor ID: {{ $supervisor->id }}</p>
-    <p>Supervisor Specialite: {{ $supervisor->specialite }}</p>
+    <p>expert ID: {{ $expert->id }}</p>
+    <p>expert Specialite: {{ $expert->specialite }}</p>
 
     <!-- Edit button -->
     <button onclick="toggleEditForm()">Edit</button>
 
     <!-- Edit form (initially hidden) -->
-    <form id="editForm" action="{{ route('supervisor.profile.update') }}" method="POST" style="display: none;">
+    <form id="editForm" action="{{ route('expert.profile.update') }}" method="POST" style="display: none;">
         @csrf
         @method('PUT')
-        <!-- Input fields for editing supervisor information -->
+        <!-- Input fields for editing expert information -->
         <label for="name">Name:</label>
         <input type="text" name="user_name" value="{{ $user->name }}"><br>
 
         <label for="specialite">Specialite:</label>
-        <input type="text" name="specialite" value="{{ $supervisor->specialite }}"><br>
+        <input type="text" name="specialite" value="{{ $expert->specialite }}"><br>
 
         <!-- Add other input fields as needed -->
 
@@ -43,7 +43,7 @@
 
     <!-- Delete button and form -->
     <div class="delete-form">
-        <form id="deleteForm" action="{{ route('supervisor.profile.destroy') }}" method="POST">
+        <form id="deleteForm" action="{{ route('expert.profile.destroy') }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit">Delete</button>

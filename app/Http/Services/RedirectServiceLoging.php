@@ -13,8 +13,8 @@ class RedirectServiceLoging
                 return $this->redirectStudentDashboard($data);
             case "teacher":
                 return $this->redirectTeacherDashboard($data);
-            case "supervisor":
-                return $this->redirectSupervisorDashboard($data);
+            case "expert":
+                return $this->redirectexpertDashboard($data);
             default:
                 return $this->redirectHome();
         }
@@ -32,11 +32,11 @@ class RedirectServiceLoging
         return redirect()->route('teacher.dashboard', compact('data'));
     }
 
-    public function redirectSupervisorDashboard($data)
+    public function redirectexpertDashboard($data)
     {
-        // Perform any necessary logic for the supervisor dashboard
+        // Perform any necessary logic for the expert dashboard
         // For example, you might want to perform additional checks or actions here
-        return redirect()->route('supervisor.dashboard', compact('data'));
+        return redirect()->route('expert.dashboard', compact('data'));
     }
 
     public function redirectGuestDashboard($data)

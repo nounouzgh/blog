@@ -1,44 +1,41 @@
 <?php
 
-namespace App\Http\Controllers; // Correct namespace
+namespace App\Http\Controllers;
 
-use App\Models\Supervisor;
+use App\Models\Expert;
 use App\Models\User;
 use App\Models\Compte;
-use App\Models\Teacher; // Import the Teacher model if not already imported
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request; // Add this line at the top of your file
-
-class SupervisorController extends Controller
+use Illuminate\Http\Request;
+class ExpertController extends Controller
 {
     public function show($id)
     {
-        $supervisor = Supervisor::findOrFail($id);
-        $user = $supervisor->user;
+        $expert = Expert::findOrFail($id);
+        $user = $expert->user;
         $compte = $user->compte;
 
-        return view('supervisor.profile', compact('supervisor', 'user', 'compte'));
+        return view('expert.profile', compact('expert', 'user', 'compte'));
     }
-
+    
     public function edit()
     {
         $compte = Auth::guard('compte')->user();
         $user = $compte->user;
-        $supervisor = $user->supervisor;
-        $editing = false;
+        $expert = $user->expert;
+        $editing = true;
 
-        return view('supervisor.profile', compact('supervisor', 'user', 'compte', 'editing'));
+        return view('expert.profile', compact('expert', 'user', 'compte', 'editing'));
     }
 
     public function update(Request $request)
     {
         $compte = Auth::guard('compte')->user();
         $user = $compte->user;
-        $supervisor = $user->supervisor;
+        $expert = $user->expert;
 
-        $supervisor->update([
-            
+        $expert->update([
             'specialite' => $request->input('specialite'),
             // Add other fields here as necessary
         ]);
@@ -49,25 +46,26 @@ class SupervisorController extends Controller
             // Add other fields here as necessary
         ]);
 
-        return redirect()->route('supervisor.profile.edit')->with('success', 'Supervisor information updated successfully');
+        return redirect()->route('expert.profile.edit')->with('success', 'Expert information updated successfully');
     }
 
     public function destroy()
     {
         $compte = Auth::guard('compte')->user();
         $user = $compte->user;
-        $supervisor = $user->supervisor;
+        $expert = $user->expert;
+
         Auth::guard('compte')->logout();
      
-        $this->performDeletionSupervisor($compte, $user, $supervisor);
+        $this->performDeletionExpert($compte, $user, $expert);
         
         return redirect()->route('welcome')->with('success', 'Your account has been deleted successfully');
     }
 
-    protected function performDeletionSupervisor(Compte $compte, User $user, Supervisor $supervisor)
+    protected function performDeletionExpert(Compte $compte, User $user, Expert $expert)
     {
-        if ($supervisor) {
-            $supervisor->delete();
+        if ($expert) {
+            $expert->delete();
         }
 
         if ($user) {

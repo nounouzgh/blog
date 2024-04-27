@@ -43,6 +43,6 @@ require __DIR__.'/auth.php';
 require __DIR__.'/guest.php';
 require __DIR__.'/student.php';
 require __DIR__.'/teacher.php';
-require __DIR__.'/supervisor.php';
+require __DIR__.'/expert.php';
 require __DIR__.'/resource.php';
 

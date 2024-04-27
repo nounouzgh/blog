@@ -5,7 +5,7 @@
         $user = Auth::guard('compte')->user()->user;
         @endphp
             @if ($user)
-            <a href="{{ route('supervisor.profile.edit') }}">Edit Profile</a>
+            <a href="{{ route('expert.profile.edit') }}">Edit Profile</a>
                 <p>User ID: {{ $user->id }}</p>
                 <p>User Name: {{ $user->name }}</p>
                 <p>User Name: {{ $user->role->name }}</p>
