@@ -71,13 +71,22 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         Auth::guard('compte')->login($compte);
 
-        $request->session()->regenerate();
-        session(['userRole' => $request->role]);
-
-        // Get the user's role
-        $userRole = $this->userService->getRole($user->id);
-
-        // Redirect based on the user's role
-        return $this->redirectServiceLogin->redirectLogingBasedOnRole($userRole, $user);
-    }
-}
+             // Regenerate session ID to prevent session fixation attacks
+             $request->session()->regenerate();
+             session(['userRole' => $request->role]);
+         
+             // Redirect to the appropriate dashboard route
+             if ($user) {
+                    $userRole = $this->userService->getRole($user->id);
+                    session(['userRole' => $userRole]);
+    
+                    if ($userRole) {
+                        // Pass the $user variable to the view
+                        return $this->redirectServiceLogin->redirectLogingBasedOnRole($userRole, $user)->with('user', $user);
+                    } 
+                } else {
+                    return response()->json(['error' => 'Invalid User'], 401);
+                }
+         }
+         
+        }
