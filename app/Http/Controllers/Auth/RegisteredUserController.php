@@ -73,7 +73,7 @@ class RegisteredUserController extends Controller
             
            // return redirect()->route('admin.dashboard');
            //return view('admin.dashboard');
-           return redirect()->route('admin.dashboard'); 
+           return redirect()->route('admin.dashboard')->with('user', $user); 
         } else {
             $user = $compte->user()->create([
                 'name' => $request->name,

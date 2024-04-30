@@ -1,18 +1,40 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\Auth;
 
-// Admin middleware
-class admin
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response; // Import Response class from Illuminate\Http namespace
+use Illuminate\Support\Facades\Auth;
+use App\Http\Services\ServiceUser;
+
+class admin // Corrected class name
 {
-    public function handle($request, $next)
+    protected $userService;
+
+    public function __construct(ServiceUser $userService)
     {
-        if (!Auth::guard('admin')->check()) {
-            return redirect()->route('login'); // Redirect non-admin users to login
-        }
-   
-        dd($request);
-        return $next($request);
+        $this->userService = $userService;
     }
+
+    public function handle(Request $request, Closure $next)
+    {
+   // this one fix problem to go in with out beein login in 
+   if (!Auth::check() && !Auth::guard('compte')->check()) {
+    return redirect()->route('login');
+    
+}else{
+    if (Auth::check() && Auth::guard('compte')->check()&&Auth::guard('admin')->check()) {
+   
+        return $next($request);
+         }else   return redirect()->route('welcome');
+         
+        
+    }
+
 }
+   // If the user role is neither supervisor nor admin, redirect to an appropriate page
+   
+}
+
+

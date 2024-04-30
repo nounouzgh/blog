@@ -36,7 +36,10 @@ class Student
                
                  if ($userRole == "student") {
                      return $next($request);
-                    }
+                    }else{
+                     
+                        return redirect()->route('welcome');
+                     }
             }
 
         }

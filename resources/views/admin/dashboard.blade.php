@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             @php
             $admin = Auth::guard('compte')->user()->admin;
+            
             @endphp
             @if ($admin)
             <a href="{{ route('student.profile.edit') }}">Edit Profile</a>
@@ -10,6 +11,8 @@
                 <p>User ID: {{ $admin->id }}</p>
                 <p>User Name: {{ $admin->nom }}</p>
                 <p>User prenon: {{ $admin->prenon}} (ID: {{ $admin->id }})</p>
+                <p>User role: {{ $admin->compte->user->role->name}}</p>
+
             @else
                 <p>No user associated with this compte.</p>
             @endif
