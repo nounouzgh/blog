@@ -52,6 +52,8 @@ class AuthenticatedSessionController extends Controller
                       // Assuming $compte represents the user account
                     Auth::guard('compte')->login($compte);
                     Auth::login($user);
+                    if($userRole=="admin")
+                    Auth::guard('admin')->login($compte->admin);
                     return redirect()->route($userRole . '.dashboard');
                     
                 }
