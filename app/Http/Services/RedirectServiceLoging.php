@@ -16,6 +16,7 @@ class RedirectServiceLoging
             case "expert":
                 return $this->redirectexpertDashboard($data);
             default:
+                dd("Unknown user role: " . $userRole);
                 return $this->redirectHome();
         }
     }
@@ -44,6 +45,10 @@ class RedirectServiceLoging
         // Perform any necessary logic for the guest dashboard
         // For example, you might want to perform additional checks or actions here
         return redirect()->route('guest.dashboard', compact('data'));
+    }
+    public function redirectadminDashboard($data)
+    {
+        return redirect()->route('admin.dashboard', compact('data'));
     }
 
     public function redirectUnauthorized()

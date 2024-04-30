@@ -3,18 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Notifications\Notifiable;
 
-class Admin extends Model
+
+class Admin extends Authenticatable implements AuthenticatableContract
 {
-    use HasFactory;
-   
+
+    use HasFactory, Notifiable;
+    protected $guard = 'admin';
+
     protected $fillable = [
-        'nom',
+        'name',
         'prenom',
-        'compte_id',
-        'role_id', 
+        
     ];
+
+
 
     // Define the compte relationship
     public function compte()
@@ -22,9 +28,4 @@ class Admin extends Model
         return $this->belongsTo(Compte::class);
     }
 
-    // Define the role relationship
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 }

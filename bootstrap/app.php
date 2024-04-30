@@ -24,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'student'=>Student::class,
             'guest'=>Guest::class,
             'admin'=>admin::class,
+            
            
         ]);
     

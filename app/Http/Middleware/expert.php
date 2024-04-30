@@ -30,8 +30,11 @@ class expert // Corrected class name
        
          if ($userRole == "expert") {
              return $next($request);
-         }else
-         return redirect()->route('welcome');
+         }else{
+            dd($request);
+            return redirect()->route('welcome');
+         }
+         
         
     }
 

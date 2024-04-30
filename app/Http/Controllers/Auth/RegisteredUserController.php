@@ -29,64 +29,83 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-
+ 
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:comptes'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:comptes'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'string'], // Add validation for role
         ]);
 
-        $roleId = Role::where('name', $request->role)->value('id');
+        // Validate if the selected role exists
+        if (!in_array($request->role, ['admin', 'student', 'teacher', 'expert'])) {
+            return redirect()->back()->withErrors(['role' => 'Invalid role selected']);
+        }
 
+       
+        // Create compte (user account)
         $compte = Compte::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         $user = $compte->user()->create([
             'name' => $request->name,
-            'role_id' => $roleId,
+            'role_id' => Role::where('name', $request->role)->value('id'),
         ]);
 
-        if ($request->role === "student") {
-            $user->student()->create([
-                'specialite' => $request->input('specialite'),
-                'date_naissance' => $request->input('date_naissance'),
-                'niveau' => $request->input('niveau'),
+        // Create user based on role
+        if ($request->role === "admin") {
+            $admin = $compte->admin()->create([
+                'nom' => $request->name,
+                'prenom' => $request->name, // Include the 'prenom' field
             ]);
-        } elseif ($request->role === "teacher") {
-            $user->teacher()->create([
-                'specialite' => $request->input('specialite'),
-                'grade' => $request->input('grade'),
+            Auth::guard('compte')->login($compte);
+            // Automatically log in the admin
+            Auth::guard('admin')->login($admin);
+            // Regenerate session ID to prevent session fixation attacks
+            Auth::login($user);
+            $request->session()->regenerate();
+            // Set user role in session
+            session(['userRole' => 'admin']);
+            // Redirect to the admin dashboard
+            
+           // return redirect()->route('admin.dashboard');
+           //return view('admin.dashboard');
+           return redirect()->route('admin.dashboard'); 
+        } else {
+            $user = $compte->user()->create([
+                'name' => $request->name,
+                'role_id' => Role::where('name', $request->role)->value('id'),
             ]);
-        } elseif ($request->role === "expert") {
-            $user->expert()->create([
-                'specialite' => $request->input('specialite'),
-            ]);
-        }
 
-        Auth::login($user);
-        Auth::guard('compte')->login($compte);
-
-             // Regenerate session ID to prevent session fixation attacks
-             $request->session()->regenerate();
-             session(['userRole' => $request->role]);
-         
-             // Redirect to the appropriate dashboard route
-             if ($user) {
-                    $userRole = $this->userService->getRole($user->id);
-                    session(['userRole' => $userRole]);
-    
-                    if ($userRole) {
-                        // Pass the $user variable to the view
-                        return $this->redirectServiceLogin->redirectLogingBasedOnRole($userRole, $user)->with('user', $user);
-                    } 
-                } else {
-                    return response()->json(['error' => 'Invalid User'], 401);
-                }
-         }
-         
+            if ($request->role === "student") {
+                $user->student()->create([
+                   'specialite' => $request->input('specialite'),
+                   'date_naissance' => $request->input('date_naissance'),
+                   'niveau' => $request->input('niveau'),
+                ]);
+            } elseif ($request->role === "teacher") {
+                $user->teacher()->create([
+                   'specialite' => $request->input('specialite'),
+                   'grade' => $request->input('grade'),
+                ]);
+            } elseif ($request->role === "supervisor") {
+                $user->supervisor()->create([
+                   'specialite' => $request->input('specialite'),
+                ]);
+            }
+            Auth::guard('compte')->login($compte);
+            // Log in the user
+            Auth::login($user);
+            // Regenerate session ID to prevent session fixation attacks
+            $request->session()->regenerate();
+            // Set user role in session
+            session(['userRole' => $request->role]);
+            // Redirect based on user role
+            $userRole = $this->userService->getRole($user->id);
+            return $this->redirectServiceLogin->redirectLogingBasedOnRole($userRole, $user)->with('user', $user);
         }
+    }
+}

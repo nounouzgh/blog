@@ -6,6 +6,8 @@ use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\View\Components\CardAnnounceIncome;
+use App\Auth\Guards\AdminGuard;
+use Illuminate\Support\Facades\Auth;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,7 +25,15 @@ class AppServiceProvider extends ServiceProvider
     {
         // Bind the HeadComposer to the 'layouts.app' view
        // View::composer('layouts.app', 'App\View\Composers\HeadComposer');
-
+        // Extend the authentication system with a custom 'admin' guard
+        /*
+        Auth::extend('admin', function ($app, $name, array $config) {
+            return new AdminGuard(
+                $name,
+                Auth::createUserProvider($config['provider']),
+                $app['session.store']
+            );
+        });*/
         // Bind the AddResourceButton component to the 'add-resource-button' view
         View::composer('component.announce.add-resource-button', 'App\View\Components\announce\AddResourceButton');
 

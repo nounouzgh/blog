@@ -35,8 +35,9 @@ class Guest
   
         if ($userRole == "guest") {
             return $next($request);
-        }else// If the user role is neither supervisor nor admin, redirect to an appropriate page
-        return redirect()->route('welcome')->with('success', 'Student information updated successfully');
-        }
+        }else{
+            dd($request);
+            return redirect()->route('welcome');
+         }
     }
-
+}

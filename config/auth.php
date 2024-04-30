@@ -38,11 +38,15 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users', // defaule data bass to login
         ],
         'compte' => [
             'driver' => 'session',
             'provider' => 'comptes', // Change this to match your provider for the 'comptes' table
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
     ],
 
@@ -72,10 +76,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Compte::class, // Change this to match your Compte model
         ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class, // Assuming Admin is your admin model
+        ],
     ],
 
     /*

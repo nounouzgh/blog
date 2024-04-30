@@ -4,11 +4,12 @@
             @php
             $admin = Auth::guard('compte')->user()->admin;
             @endphp
-            @if ($user)
-            <a href="{{ route('admin.profile.edit') }}">Edit Profile</a>
+            @if ($admin)
+            <a href="{{ route('student.profile.edit') }}">Edit Profile</a>
+            <a href="{{ route('resource.index') }}">Show resource</a>
                 <p>User ID: {{ $admin->id }}</p>
-                <p>User Name: {{ $admin->name }}</p>
-                <p>User prenon: {{ $admin->prenon }} ( Role: {{ $admin->role->name }})</p>
+                <p>User Name: {{ $admin->nom }}</p>
+                <p>User prenon: {{ $admin->prenon}} (ID: {{ $admin->id }})</p>
             @else
                 <p>No user associated with this compte.</p>
             @endif

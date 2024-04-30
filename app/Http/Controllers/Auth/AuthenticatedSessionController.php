@@ -69,6 +69,8 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         Auth::guard('compte')->logout(); // Log the user out from the 'compte' guard
+        Auth::guard('admin')->logout(); // Log the user out from the 'compte' guard
+        Auth::logout();
         $request->session()->invalidate(); // Invalidate the session
         return redirect('/'); // Redirect to the home page or any other desired location
     }

@@ -1,15 +1,30 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AdminController;
-
-Route::prefix('admin')->name('admin.')->middleware(['auth:compte', 'verified', 'admin'])->group(function () {
-    // Dashboard
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\admin;
+/*
+Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'verified', 'admin'])->group(function () {
     Route::view('dashboard', 'admin.dashboard')->name('dashboard');
-
-    // Profile routes
-    Route::get('profile', [AdminController::class, 'show'])->name('profile.show'); // Show profile
-    Route::get('profile/{id}', [AdminController::class, 'show'])->name('profile.show'); // Show specific profile
-    Route::get('profil/edit', [AdminController::class, 'edit'])->name('profile.edit'); // Edit profile (show edit form)
-    Route::put('profil', [AdminController::class, 'update'])->name('profile.update'); // Update profile
+});*/
+/*
+// Admin routes
+Route::middleware(admin::class)->group(function () {
+    Route::get('/admin', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+    // Add other admin routes here...
 });
+*/
+// routes/web.php
+
+
+// routes/web.php
+/*
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'adminDashboard'])->name('dashboard');
+    // Add other admin routes here...
+});
+
+*/
+// In your routes file (web.php or api.php)
+Route::get('/admin', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');

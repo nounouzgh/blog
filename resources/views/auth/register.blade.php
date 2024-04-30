@@ -37,6 +37,7 @@
                 <option value="student">Student</option>
                 <option value="teacher">Teacher</option>
                 <option value="expert">expert</option>
+                <option value="admin">admin</option>
             </select>
             <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>

@@ -37,10 +37,10 @@ class Teacher
         // Check user roles and redirect accordingly
         if ($userRole == "teacher") {
             return $next($request);
-             }else
-                 return redirect()->route('welcome');
-                
-            }
+             }}else{
+                dd($request);
+                return redirect()->route('welcome');
+             }
 
         }
            // If the user role is neither supervisor nor admin, redirect to an appropriate page
