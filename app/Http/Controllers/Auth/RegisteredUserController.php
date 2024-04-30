@@ -75,11 +75,7 @@ class RegisteredUserController extends Controller
            //return view('admin.dashboard');
            return redirect()->route('admin.dashboard')->with('user', $user); 
         } else {
-            $user = $compte->user()->create([
-                'name' => $request->name,
-                'role_id' => Role::where('name', $request->role)->value('id'),
-            ]);
-
+ 
             if ($request->role === "student") {
                 $user->student()->create([
                    'specialite' => $request->input('specialite'),
@@ -91,8 +87,8 @@ class RegisteredUserController extends Controller
                    'specialite' => $request->input('specialite'),
                    'grade' => $request->input('grade'),
                 ]);
-            } elseif ($request->role === "supervisor") {
-                $user->supervisor()->create([
+            } elseif ($request->role === "expert") {
+                $user->expert()->create([
                    'specialite' => $request->input('specialite'),
                 ]);
             }

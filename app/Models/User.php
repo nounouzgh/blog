@@ -5,8 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class User extends Authenticatable
 {
@@ -36,7 +35,6 @@ class User extends Authenticatable
 
     public function expert()
     {
-        // Define the relationship with the Expert model if it exists
         return $this->hasOne(Expert::class);
     }
 
