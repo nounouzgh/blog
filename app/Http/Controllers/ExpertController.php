@@ -42,6 +42,7 @@ class ExpertController extends Controller
 
         $user->update([
             'name' => $request->input('user_name'),
+            'prenom'=> $request->input('user_prenom'),
             'email' => $request->input('user_email'),
             // Add other fields here as necessary
         ]);

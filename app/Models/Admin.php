@@ -15,7 +15,7 @@ class Admin extends Authenticatable implements AuthenticatableContract
     protected $guard = 'admin';
 
     protected $fillable = [
-        'name',
+        'nom',
         'prenom',
         
     ];

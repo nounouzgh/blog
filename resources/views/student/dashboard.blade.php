@@ -9,8 +9,9 @@
             <a href="{{ route('resource.index') }}">Show resource</a>
                 <p>User ID: {{ $user->id }}</p>
                 <p>User Name: {{ $user->name }}</p>
+                <p>User LastName: {{ $user->prenom }}</p>
                 <p>User Role: {{ $user->role->name }} </p>
-                <p>User Role: {{ $user->student->id }}</p>
+                <p>student ID: {{ $user->student->id }}</p>
             @else
                 <p>No user associated with this compte.</p>
             @endif

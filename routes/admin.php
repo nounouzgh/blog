@@ -10,9 +10,10 @@ use App\Http\Middleware\admin;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [AdminController::class, 'adminDashboard'])->name('dashboard');
-    // Add other admin routes here...
-});
+    Route::get('/users', [AdminController::class, 'listUsers'])->name('users');
 
+    
+});
 
 /*
 // In your routes file (web.php or api.php)

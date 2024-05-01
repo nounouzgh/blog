@@ -6,11 +6,12 @@
             
             @endphp
             @if ($admin)
-            <a href="{{ route('student.profile.edit') }}">Edit Profile</a>
-            <a href="{{ route('resource.index') }}">Show resource</a>
+          
+            <a href="{{ route('admin.users') }}">List User</a>
                 <p>User ID: {{ $admin->id }}</p>
                 <p>User Name: {{ $admin->nom }}</p>
-                <p>User prenon: {{ $admin->prenon}} (ID: {{ $admin->id }})</p>
+                <p>User prenon: {{ $admin->prenom}}</p>
+                <p>admin ID: (ID: {{ $admin->id }})</p>
                 <p>User role: {{ $admin->compte->user->role->name}}</p>
 
             @else

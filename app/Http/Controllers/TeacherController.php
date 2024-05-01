@@ -44,33 +44,35 @@ class TeacherController extends Controller
     $editing = false;
     return view('teacher.profile', compact('teacher', 'user', 'compte', 'editing'));
 }
-
-
 public function update(Request $request)
 {
     // Retrieve the authenticated compte and its associated user
     $compte = Auth::guard('compte')->user();
     $user = $compte->user;
 
-    // Retrieve the student associated with the authenticated user
+    // Retrieve the teacher associated with the authenticated user
     $teacher = $user->teacher;
 
-    // Update the student's information
+    // Update the teacher's information
     $teacher->update([
         'specialite' => $request->input('specialite'),
         'grade' => $request->input('grade'),
         // Add other fields here as necessary
     ]);
+
     // Update the user's information
     $user->update([
         'name' => $request->input('user_name'),
+        'prenom' => $request->input('user_prenom'), // Make sure this line is correct
         'email' => $request->input('user_email'),
         // Add other fields here as necessary
     ]);
 
-    // Redirect back to the student's profile page
-    return redirect()->route('teacher.profile.edit')->with('success', 'teacher information updated successfully');
+    // Redirect back to the teacher's profile page
+    return redirect()->route('teacher.profile.edit')->with('success', 'Teacher information updated successfully');
 }
+
+
 
 public function destroy()
 {

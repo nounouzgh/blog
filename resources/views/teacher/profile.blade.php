@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Student Information</title>
+    <title>Show Teacher Information</title>
     <!-- Add CSS for success message -->
     <style>
         .success-message {
@@ -13,11 +13,12 @@
     </style>
 </head>
 <body>
-    <h1>Show Student Information</h1>
-    <h2>Student Details:</h2>
+    <h1>Show Teacher Information</h1>
+    <h2>Teacher Details:</h2>
 
     <!-- Display current information -->
     <p>Name: {{ $user->name }}</p>
+    <p>prenom: {{ $user->prenom }}</p>
     <p>Compte Email: {{ $compte->email }}</p>
     <p>Teacher ID: {{ $teacher->id }}</p>
     <p>Teacher Specialite: {{ $teacher->specialite }}</p>
@@ -27,24 +28,41 @@
     <button onclick="toggleEditForm()">Edit</button>
 
     <!-- Edit form (initially hidden) -->
-    <form id="editForm" action="{{ route('teacher.profile.update') }}" method="POST" style="display: none;">
-        @csrf
-        @method('PUT')
-        <!-- Input fields for editing student information -->
-        <label for="name">Name:</label>
-        <input type="text" name="user_name" value="{{ $user->name }}"><br>
+   <!-- Add the 'prenom' input field to the form -->
+<form id="editForm" action="{{ route('teacher.profile.update') }}" method="POST">
+    @csrf
+    @method('PUT')
+    
+    <!-- Input fields for editing user and teacher information -->
+    <div>
+        <x-input-label for="name" :value="__('Name')" />
+        <x-text-input id="name" class="block mt-1 w-full" type="text" name="user_name" :value="$user->name" required autofocus />
+        <x-input-error :messages="$errors->get('user_name')" class="mt-2" />
+    </div>
 
-        <label for="specialite">Specialite:</label>
-        <input type="text" name="specialite" value="{{ $teacher->specialite }}"><br>
+    <div>
+        <x-input-label for="prenom" :value="__('Prenom')" />
+        <x-text-input id="prenom" class="block mt-1 w-full" type="text" name="user_prenom" :value="$user->prenom" required />
+        <x-input-error :messages="$errors->get('user_prenom')" class="mt-2" />
+    </div>
 
-        <label for="grade">grade</label>
-        <input type="text" name="grade" value="{{ $teacher->grade }}"><br>
+    <div>
+        <x-input-label for="specialite" :value="__('Specialite')" />
+        <x-text-input id="specialite" class="block mt-1 w-full" type="text" name="specialite" :value="$teacher->specialite" required />
+        <x-input-error :messages="$errors->get('specialite')" class="mt-2" />
+    </div>
 
+    <div>
+        <x-input-label for="grade" :value="__('Grade')" />
+        <x-text-input id="grade" class="block mt-1 w-full" type="text" name="grade" :value="$teacher->grade" required />
+        <x-input-error :messages="$errors->get('grade')" class="mt-2" />
+    </div>
 
-        <!-- Add other input fields as needed -->
+    <!-- Add other input fields as necessary -->
 
-        <button type="submit">Update</button>
-    </form>
+    <button type="submit">Update</button>
+</form>
+
       <!-- Delete button and form -->
       <div class="delete-form">
         <form id="deleteForm" action="{{ route('teacher.profile.destroy') }}" method="POST">

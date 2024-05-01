@@ -8,7 +8,9 @@
             <a href="{{ route('expert.profile.edit') }}">Edit Profile</a>
                 <p>User ID: {{ $user->id }}</p>
                 <p>User Name: {{ $user->name }}</p>
-                <p>User Name: {{ $user->role->name }}</p>
+                <p>User LastName: {{ $user->prenom }}</p>
+                <p>User Role: {{ $user->role->name }}</p>
+                <p>User etat: {{ $user->compte->etat }}</p>
                 {{-- Access other properties of the user as needed --}}
             @else
                 <p>No user associated with this compte.</p>

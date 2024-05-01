@@ -15,8 +15,9 @@ class RedirectServiceLoging
                 return $this->redirectTeacherDashboard($data);
             case "expert":
                 return $this->redirectexpertDashboard($data);
+            case "admin":
+                    return $this->redirectadminDashboard($data);
             default:
-                dd("Unknown user role: " . $userRole);
                 return $this->redirectHome();
         }
     }

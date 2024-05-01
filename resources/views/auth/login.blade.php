@@ -4,6 +4,11 @@
     <div class="full-screen-container">
       <div class="login-container">
         <h3 class="login-title">Welcome</h3>
+        @if(session('confirmation_message'))
+        <div class="alert alert-info">
+            {{ session('confirmation_message') }}
+        </div>
+    @endif
         <form method="POST" action="{{ route('login') }}">
         @csrf
               <!-- Email Address -->

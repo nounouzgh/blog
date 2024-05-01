@@ -35,6 +35,9 @@
         <label for="name">Name:</label>
         <input type="text" name="user_name" value="{{ $user->name }}"><br>
 
+        <label for="name">Prenom:</label>
+        <input type="text" name="user_prenom" value="{{ $user->prenom }}"><br>
+        
         <label for="specialite">Specialite:</label>
         <input type="text" name="specialite" value="{{ $student->specialite }}"><br>
 
