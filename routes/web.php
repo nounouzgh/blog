@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
 use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\ResourceController;
+
 // Define a catch-all route when u do wrong route
 
 Route::fallback(function () {
@@ -13,8 +16,6 @@ Route::fallback(function () {
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
-
 
 
 /* need to fix this route later*/
@@ -36,6 +37,12 @@ Route::middleware('auth')->group(function () {
         return view('1to call back if err.dashboard');
     });*/
 Route::get('/lol', [test::class, 'index']);
+// routes/web.php
+
+Route::get('/resources', [ResourceController::class, 'index'])->name('resources.index');
+
+
+
 
 require __DIR__.'/NoRole.php';
 require __DIR__.'/auth.php';

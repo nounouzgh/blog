@@ -50,6 +50,8 @@ class AppServiceProvider extends ServiceProvider
    
         View::composer('component.announce.ListAnnounce', 'App\View\Components\announce\ListAnnounce');
    
-
+        View::composer('component.announce.ListAnnounce', 'App\View\Components\announce\ListAnnounce');
+        View::composer('component.sidebar', 'App\View\Components\sidebar');
+   
    }
 }

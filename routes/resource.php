@@ -10,7 +10,6 @@ use App\Http\Controllers\CommentsController;
 Route::post('/resource/dashboard', [ResourceController::class, 'store'])->name('resource.store');
 // test controlle pase data and get it in blade test
 Route::get('/resource/dashboard', [ResourceController::class, 'index'])->name('resource.index');
-Route::get('/resource/dashboard', [ResourceController::class, 'index'])->name('resource.index');
 
 Route::delete('/resources/{id}', [ResourceController::class, 'destroy'])->name('resource.destroy');
 

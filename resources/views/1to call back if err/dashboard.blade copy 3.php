@@ -24,8 +24,107 @@
     <div class="container">
         <!-- aside tage -->
         <!-- end of Aside menu left menu-->
-        <x-sidebar  
-        />
+    
+        <aside>
+        <nav>
+
+           
+            
+                <!-- this one is for left menu  logo-->  
+               <div class="top">
+                  <div class="logo">
+                      <!-- #logo image-->
+                      <img src="logo/logo.png">
+                      <!-- spam for deferent color name menu -->
+                      <h2>Educ<span class="danger">ation</span></h2>
+                  </div>
+        <!--div x code  below image logo-->
+        <div class="close" id="close-btn">
+            <!-- #image icon  x-->
+            <span class="material-symbols-outlined">
+                close
+                </span>
+         </div>
+               </div>
+               
+             
+                 <!-- munue left bare-->
+               <div class="sidebare">
+      
+                  <!-- u can add menu u want in main menu  a balise-->
+                  <a href="http://">
+                      <!--image icon care for menu-->
+                      <span class="material-symbols-outlined">grid_view</span>
+                      <!--name icon care for menu-->
+                      <h3>Dashoard</h3>
+                  </a>
+      
+                  <a href="http://" class="active">
+                      <!--image icon care for person-->
+                      <span class="material-symbols-outlined">person</span>
+                      <!--name icon care for menu-->
+                      <h3>Users</h3>
+      
+                  </a>
+      
+                  <a href="http://">
+                      <!--image icon care for menu-->
+                      <span class="material-symbols-outlined">
+                        library_books
+                        </span>
+                      <!--name icon care for menu-->
+                      <h3>Resources</h3>
+      
+                  </a>
+      
+                  <a href="http://">
+                      <!--image icon care for menu-->
+                      <span class="material-symbols-outlined">
+                        auto_stories
+                        </span>
+                      <!--name icon care for menu-->
+                      <h3>Cour Online</h3>
+                      <!--nber count-->
+            
+                  </a>
+
+                  <a href="http://">
+                    <!--image icon care for menu-->
+                    <span class="material-symbols-outlined">
+                        event
+                        </span>
+                    <!--name icon care for menu-->
+                    <h3>Event</h3>
+                    <!--nber count-->
+                    <span class="mesage-count">26</span>    
+                </a>
+                
+                     <a href="http://">
+                      <!--image icon care for menu-->
+                      <span class="material-symbols-outlined">
+                        groups
+                        </span>
+                      <!--name icon care for menu-->
+                      <h3>Meeting</h3>
+                      <!--nber count-->
+                 
+                  </a>
+                  <a href="http://">
+                      <!--image icon care for menu-->
+                      <span class="material-symbols-outlined">logout</span>
+                      <!--name icon care for menu-->
+                      <h3>logout</h3>
+                  </a>
+               </div>
+      
+              
+
+        </nav>
+    </aside>
+
+
+
+
         <!-- end of Aside menu-->
         <main>
             <h1>Dashoard</h1>
