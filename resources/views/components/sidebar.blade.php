@@ -186,29 +186,8 @@
         display: block;
     }
 
-    .menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .menu li a {
-        display: block;
-        padding: 5px 10px;
-        text-decoration: none;
-        color: #333;
-    }
-
-    .menu li a:hover {
-        background-color: #f0f0f0;
-    }
-
-    /* Prevent unintended style overrides */
-    .sidebare .menu.active {
-        display: block;
-    }
-    
-    /* Apply styles to message-count */
+       
+    /* Apply styles to message-count conteur  red color*/
     #event-link .message-count {
         background: var(--color-danger);
         color: var(--color-white);
@@ -216,4 +195,63 @@
         font-size: 11px;
         border-radius: var(--border-radius-1);
     }
+
+
+   
+    .menu a {
+            display: block;
+            color: #fff; /* Text color */
+            padding: 10px 20px; /* Padding for each item */
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s; /* Transition for background and transform */
+            position: relative;
+            z-index: 1; /* Ensure links appear above overlay */
+        }
+ /* Hover effect */
+ .menu a:hover {
+    background-color: #555; /* Hover background color */
+    transform: translateX(10px); /* Move item 10px to the right on hover */
+  }
+
+  /* 3D effect */
+  .menu a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -20px;
+    height: 100%;
+    width: 20px;
+    background-color: #333; /* Same as navbar background */
+    transform: skewX(-20deg);
+    z-index: -1;
+    transition: background-color 0.3s; /* Transition for background color */
+  }
+
+ 
+
+      /* Menu styles */
+      .menu {
+    display: none; /* Initially hide the menu */
+    position: absolute;
+    width: 200px; /* Width of the menu */
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+    padding: 10px;
+    z-index: 1; /* Ensure it's above other content */
+    left: 200px; /* Position the menu 200px from the left edge of the navbar */
+    border: none; /* Remove border */
+}
+
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menu li {
+    padding: 5px 0;
+  }
+
+  .menu-item:hover .menu-overlay {
+    display: block; /* Show overlay on hover */
+  }
 </style>
