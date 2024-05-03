@@ -39,7 +39,7 @@ class expert // Corrected class name
     }
 
 }
-   // If the user role is neither supervisor nor admin, redirect to an appropriate page
+   // If the user role is neither expert nor admin, redirect to an appropriate page
    
 }
 }

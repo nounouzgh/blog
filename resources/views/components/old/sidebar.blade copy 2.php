@@ -170,6 +170,7 @@
     });
 
 </script>
+
 <style>
     /* Menu styles */
     .menu {
@@ -207,13 +208,5 @@
     .sidebare .menu.active {
         display: block;
     }
-    
-    /* Apply styles to message-count */
-    #event-link .message-count {
-        background: var(--color-danger);
-        color: var(--color-white);
-        padding: 2px 10px;
-        font-size: 11px;
-        border-radius: var(--border-radius-1);
-    }
+
 </style>
