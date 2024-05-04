@@ -296,7 +296,76 @@ aside .sidebare .mesage-count{
 }
 
 
-/*===========================Main=====================================*/
+/*===========================small menu=====================================*/
+
+
+      /* Menu styles */
+      .menu {
+        display: none; /* Initially hide the menu */
+        position: absolute;
+        width: 200px; /* Width of the menu */
+        background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+        padding: 10px;
+        z-index: 1; /* Ensure it's above other content */
+        left: 200px; /* Position the menu 200px from the left edge of the navbar */
+        border: none; /* Remove border */
+    }
+
+/* activze menu to show*/
+    .menu.active {
+        display: block;
+    }
+       
+    /* Apply styles to message-count conteur  red color*/
+    #event-link .message-count {
+        background: var(--color-danger);
+        color: var(--color-white);
+        padding: 2px 10px;
+        font-size: 11px;
+        border-radius: var(--border-radius-1);
+    }
+
+
+   
+    .menu a {
+            display: block;
+            color: #fff; /* Text color */
+            padding: 10px 20px; /* Padding for each item */
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s; /* Transition for background and transform */
+            position: relative;
+            z-index: 1; /* Ensure links appear above overlay */
+        }
+ /* Hover effect */
+ .menu a:hover {
+    background-color: #555; /* Hover background color */
+    transform: translateX(10px); /* Move item 10px to the right on hover */
+  }
+
+  /* 3D effect  create think like hid one and create div in top ove other*/
+  .menu a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -20px;
+    height: 100%;
+    width: 20px;
+    background-color: #333; /* Same as navbar background */
+    transform: skewX(-20deg);
+    z-index: -1;
+    transition: background-color 0.3s; /* Transition for background color */
+  }
+
+/*for make speace*/
+  .menu li {
+    padding: 5px 0;
+  }
+
+  .menu-item:hover .menu-overlay {
+    display: block; /* Show overlay on hover */
+  }
+
+/*===========================end  small menu to dashbar=====================================*/
 /*===========================Main=====================================*/
 
 main{
@@ -333,12 +402,12 @@ transition: all 300ms ease; /*smouve affichage when i houver*/
 } 
 
 
-main .insights > div:hover{
+main .insights > div:not(.info-container):hover{
 box-sizing: none ;
 background: var(--color-light);
 }
 
-main .insights > div span{
+main .insights > div:not(.info-container) span{
 
     background:var(--color-primary);
     padding: 0.5em;
@@ -347,6 +416,7 @@ main .insights > div span{
     font-size: 2em;
     
 }
+
 
 
 /*color du log for bordur*/

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\View\Components\CardAnnounceIncome;
 use App\Auth\Guards\AdminGuard;
 use Illuminate\Support\Facades\Auth;
+use App\View\Components\DashboardLayout;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -52,6 +53,6 @@ class AppServiceProvider extends ServiceProvider
    
         View::composer('component.announce.ListAnnounce', 'App\View\Components\announce\ListAnnounce');
         View::composer('component.sidebar', 'App\View\Components\sidebar');
-   
+     
    }
 }
