@@ -174,12 +174,9 @@ height: 100vh;
 /*for see my balise and emouve backgroud later*/
 
 
+
 }
 
-
-      
-
-/*end fix */
 /*logo */
 aside .top{
     /*for what we rite go in top wite too */
@@ -219,7 +216,7 @@ display:  none;
 /*   and SIDE BARE MENU*/
 
 aside .sidebare{
-
+position:  fixed;
 display: flex;/*in arow left to right in default*/
 flex-direction: column;/*but with this is will from top to down*/
 position: relative; /*ucan mouve it in where u want if u do left or top and give how mouve u awnt mouve it*/ 
@@ -373,7 +370,6 @@ aside .sidebare .mesage-count{
 
 main{
 margin-top: 1.1em;
-
 }
 
 main .date{

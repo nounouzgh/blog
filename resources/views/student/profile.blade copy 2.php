@@ -68,9 +68,10 @@
                 height: 100%; /* Set height to 100% */
             }
    
-            .info-container {
-                width: 95%; /* Set width to 100% */
-                height: 95%; /* Set height to 100% */
+
+                .info-container {
+                width: 90%; /* Set width to 100% */
+                height: 90%; /* Set height to 100% */
                 margin-left: 5%;/* Move the container to the right */
                 max-width: 700px; /* Adjust max-width as needed */
                 align-items: center;
@@ -78,62 +79,22 @@
                 background-color: white;
                 border: 1px solid #ccc;
                 box-sizing: border-box; /* Include padding and border in width and height calculations */
+   
             }
         
             .info-container .user-info {
-                border: 2px solid #007bff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 8px;
-                background-color: #f9f9f9;
-            }
-        
-            .info-container .user-info p {
-                margin-bottom: 10px;
-            }
-        
-            .info-container .user-info button {
-                background-color: #007bff;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-        
-            .info-container .delete-form button {
-                background-color: #dc3545;
-            }
-        
-            .success-message {
-                color: green;
-                margin-top: 10px;
-            }
-
-            /* CSS for input fields */
-            input[type="text"] {
-                width: 100%;
+                border: 1px solid #ccc;
                 padding: 10px;
                 margin-bottom: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-sizing: border-box;
             }
-
-            /* CSS for Edit button */
-            button {
-                background-color: #007bff;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 5px;
-                cursor: pointer;
-                margin-bottom: 10px;
+        
+            .info-container .delete-form {
+                margin-top: 10px;
             }
-
-            /* CSS for Cancel button */
-            button.cancel {
-                background-color: #dc3545;
+        
+            .info-container .success-message {
+                color: green;
+                margin-top: 10px;
             }
         </style>
         <script>
@@ -149,11 +110,26 @@
                 }
             }
         </script>
- 
-</x-slot>
+        
 
-<!-- Recent Updates section -->
-<x-slot name="recentUpdates">
+    </x-slot>
+
+    <!-- Recent Updates section -->
+    <x-slot name="recentUpdates">
+        <x-update 
+        :profileNumber="1"
+        :name="'Mike Tyzon'"
+        :cour="'informatique'"
+        :description="'intergation'"
+        :timer="'2 minutes ago'"
+    />
+        <x-update 
+        :profileNumber="1"
+        :name="'Mike Tyzon'"
+        :cour="'informatique'"
+        :description="'intergation'"
+        :timer="'2 minutes ago'"
+    />
     <x-update 
     :profileNumber="1"
     :name="'Mike Tyzon'"
@@ -161,50 +137,36 @@
     :description="'intergation'"
     :timer="'2 minutes ago'"
 />
-    <x-update 
-    :profileNumber="1"
-    :name="'Mike Tyzon'"
-    :cour="'informatique'"
-    :description="'intergation'"
-    :timer="'2 minutes ago'"
-/>
-<x-update 
-:profileNumber="1"
-:name="'Mike Tyzon'"
-:cour="'informatique'"
-:description="'intergation'"
-:timer="'2 minutes ago'"
-/>
 
-</x-slot>
+    </x-slot>
 
-<!-- List Coure section -->
-<x-slot name="ListCoure">
-    <x-itemcostomers
-    :icon="'forum'" 
-    :title="'Online Forum'" 
-    :subtitle="'Last 24 hours'" 
-    :percentage="'60%'" 
-    :count="'3849'" 
-    />
-    <x-itemoffline
-    :icon="'forum'" 
-    :title="'Online Forum'" 
-    :subtitle="'Last 24 hours'" 
-    :percentage="'39%'" 
-    :count="'3849'" 
-    />
-    <x-itemonline
-    :icon="'forum'" 
-    :title="'Online Forum'" 
-    :subtitle="'Last 24 hours'" 
-    :percentage="'39%'" 
-    :count="'3849'" 
-    />
+    <!-- List Coure section -->
+    <x-slot name="ListCoure">
+        <x-itemcostomers
+        :icon="'forum'" 
+        :title="'Online Forum'" 
+        :subtitle="'Last 24 hours'" 
+        :percentage="'60%'" 
+        :count="'3849'" 
+        />
+        <x-itemoffline
+        :icon="'forum'" 
+        :title="'Online Forum'" 
+        :subtitle="'Last 24 hours'" 
+        :percentage="'39%'" 
+        :count="'3849'" 
+        />
+        <x-itemonline
+        :icon="'forum'" 
+        :title="'Online Forum'" 
+        :subtitle="'Last 24 hours'" 
+        :percentage="'39%'" 
+        :count="'3849'" 
+        />
 
-     <!-- Include the component with data -->
- 
-     <x-add-resource-button icon="add" title="Add Product" />
+         <!-- Include the component with data -->
+     
+         <x-add-resource-button icon="add" title="Add Product" />
 
-</x-slot>
+    </x-slot>
 </x-dashboard-layout>
