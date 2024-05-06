@@ -11,7 +11,8 @@
                 <p>User Name: {{ $user->name }}</p>
                 <p>User LastName: {{ $user->prenom }}</p>
                 <p>User Role: {{ $user->role->name }} </p>
-                <p>student ID: {{ $user->student->id }}</p>
+               <!--  <p>student ID:  $user->student->id </p>  -->
+                
             @else
                 <p>No user associated with this compte.</p>
             @endif
