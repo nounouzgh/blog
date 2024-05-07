@@ -6,7 +6,7 @@
             @endphp
             @if ($user)
             <a href="{{ route('student.profile.edit') }}">Edit Profile</a>
-            <a href="{{ route('resource.index') }}">Show resource</a>
+            <a href="{{ route('resource.index') }}">Show My Resource resource</a>
                 <p>User ID: {{ $user->id }}</p>
                 <p>User Name: {{ $user->name }}</p>
                 <p>User LastName: {{ $user->prenom }}</p>

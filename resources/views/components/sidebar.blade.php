@@ -14,9 +14,9 @@
         
         <!-- Sidebar menu -->
         <div class="sidebare">
-            <a href="#" class="active">
+            <a href="{{ route('Dashboard') }}" class="active">
                 <span class="material-symbols-outlined">grid_view</span>
-                <h3>Dashboard</h3>
+               <h3>Dashboard</h3>
             </a>
             <a href="#"  data-menu-id="user-menu">
                 <span class="material-symbols-outlined">person</span>
@@ -55,7 +55,6 @@
     <ul>
         <!-- Menu items for User -->
         <li><a href="{{ route('student.profile.edit') }}">Edit Profile</a></li>
-        <li>  <a href="{{ route('resource.index') }}">Show resource</a></li>
         <li><a href="#">Messages</a></li>
     </ul>
 </div>
@@ -63,7 +62,7 @@
 <div class="menu" id="resource-menu">
     <ul>
         <!-- Menu items for Resources -->
-        <li><a href="#">Books</a></li>
+        <li>  <a href="{{ route('resource.index') }}">My Resource</a></li>
         <li><a href="#">Articles</a></li>
         <li><a href="#">Videos</a></li>
     </ul>

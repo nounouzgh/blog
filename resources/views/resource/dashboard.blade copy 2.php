@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="file" class="block mb-2 text-sm font-medium">File</label>
-                                    <input type="file" name="file" id="file" class="form-control-file @error('file') is-invalid @enderror" accept="image/jpeg, image/png, image/gif, application/pdf, audio/*, video/*" required>
+                                    <input type="file" name="file" id="file" class="form-control-file @error('file') is-invalid @enderror" accept="image/jpeg, image/png, image/gif, application/pdf" required>
                                     @error('file')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -60,7 +60,11 @@
                                 <td>
                                     <div class="btn-group d-flex" role="group" style="white-space: nowrap;">
                                         <!-- Delete Resource Button -->
-                                   
+                                        <form action="{{ route('resource.destroy', $resource->id) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm btn-3d mr-1"><span class="material-symbols-outlined">delete</span></button>
+                                        </form>
                                         <!-- Edit Resource Button -->
                                         <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">upgrade</span></a>
                                         <!-- View File 1 Button -->
@@ -68,12 +72,6 @@
                                         <!-- View File 2 Button -->
                                         <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">visibility</span>2</a>
                                         <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">comment</span></a>
-                                        <a href="{{ route('resource.download', ['id' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">download</span></a>
-                                        <form action="{{ route('resource.destroy', $resource->id) }}" method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm btn-3d mr-1"><span class="material-symbols-outlined">delete</span></button>
-                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -181,7 +179,7 @@
         width: 95%; /* Set width to 100% */
         height: 95%; /* Set height to 100% */
         margin-left: 5%; /* Move the container to the right */
-        max-width: 730px; /* Adjust max-width as needed */
+        max-width: 800px; /* Adjust max-width as needed */
         align-items: center;
         padding: 20px;
         background-color: white;

@@ -210,32 +210,4 @@ public function viewFile($id)
         'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"',
     ]);
 }
-
-public function downloadFile($id)
-    {
-        // Find the resource by its ID
-        $resource = Resource::find($id);
-
-        // Check if the resource exists
-        if (!$resource) {
-            return response()->json(['message' => 'Resource not found'], 404);
-        }
-
-        // Specify the file path relative to the root directory of the storage disk
-        $filePath = 'public/' . $resource->lien;
-
-        // Check if the file exists
-        if (!Storage::exists($filePath)) {
-            return response()->json(['message' => 'File not found'], 404);
-        }
-
-        // Get the file's MIME type
-        $mimeType = Storage::mimeType($filePath);
-
-        // Return the file as a downloadable response
-        return response()->download(storage_path('app/' . $filePath), basename($filePath), [
-            'Content-Type' => $mimeType,
-            'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
-        ]);
-    }
 }

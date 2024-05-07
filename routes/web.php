@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/lol', function () {
         return view('1to call back if err.dashboard');
     });*/
-Route::get('/lol', [test::class, 'index']);
+Route::get('/lol', [test::class, 'index'])->name('Dashboard');
 // routes/web.php
 
 Route::get('/resources', [ResourceController::class, 'index'])->name('resources.index');

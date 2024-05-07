@@ -21,6 +21,8 @@ Route::put('/resources/{resource}/edit/update', [ResourceController::class, 'upd
 Route::get('Student/resource/dashboard', [ResourceController::class, 'search'])->name('resource.search');
 
 
+Route::get('resource/download/{id}', [ResourceController::class, 'downloadFile'])->name('resource.download');
+
 /*
 Route::get('/resources/{id}/view', [ResourceController::class, 'view'])->name('resource.view');
 */
