@@ -1,7 +1,9 @@
 <x-dashboard-layout>
     <!-- Main content -->
     <x-slot name="contenu">
+  
         <div class="info-container">
+            <div class="my-resource">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
@@ -140,6 +142,10 @@
             @endif
             <!-- End of resource table -->
         </div>
+        <div class="all-resource" style="display: none;">
+            <x-ListAnnounce :resources="$resources" />
+        </div>
+    </div>
     </x-slot>
 
     <!-- Recent Updates section -->

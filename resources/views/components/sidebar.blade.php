@@ -1,6 +1,5 @@
 <aside>
     <nav>
-
         <!-- Left menu logo -->
         <div class="top">
             <div class="logo">
@@ -30,24 +29,20 @@
                 <span class="material-symbols-outlined">auto_stories</span>
                 <h3>Course Online</h3>
             </a>
-           
             <a href="#" id="event-link" data-menu-id="event-menu">
                 <span class="material-symbols-outlined">event</span>
                 <h3>Event</h3>
                 <span class="message-count">26</span> 
             </a>
-           
             <a href="#" data-menu-id="meeting-menu">
                 <span class="material-symbols-outlined">groups</span>
                 <h3>Meeting</h3>
             </a>
-
             <a href="#">
                 <span class="material-symbols-outlined">logout</span>
                 <h3>Logout</h3>
             </a>
         </div>
-
     </nav>
 </aside>
 
@@ -62,8 +57,9 @@
 <div class="menu" id="resource-menu">
     <ul>
         <!-- Menu items for Resources -->
-        <li>  <a href="{{ route('resource.index') }}">My Resource</a></li>
-        <li><a href="#">Articles</a></li>
+        <li><a href="#" data-resource-view="my">My Resource</a></li>
+        <li><a href="#" data-resource-view="all">All Resource</a></li>
+        
         <li><a href="#">Videos</a></li>
     </ul>
 </div>
@@ -93,6 +89,39 @@
         <li><a href="#">Participants</a></li>
     </ul>
 </div>
+
+<!-- resource scripte for hid 1 or 2 div my resource or all resourece -->
+
+<script>
+ // Function to toggle between My Resource and All Resource
+function toggleResourceView(view) {
+    const myResourceDiv = document.querySelector('.my-resource');
+    const allResourceDiv = document.querySelector('.all-resource');
+
+    // Hide both divs initially
+    myResourceDiv.style.display = 'none';
+    allResourceDiv.style.display = 'none';
+
+    // Show the selected view
+    if (view === 'my') {
+        myResourceDiv.style.display = 'block';
+    } else if (view === 'all') {
+        allResourceDiv.style.display = 'block';
+    }
+}
+
+// Add click event listener to the sidebar links for Resource
+document.querySelectorAll('[data-resource-view]').forEach(function(link) {
+    link.addEventListener('click', function() {
+        const view = this.getAttribute('data-resource-view');
+        toggleResourceView(view);
+    });
+});
+
+// Initially show My Resource when the page loads
+toggleResourceView('my');
+
+</script>
 
 <script>
     const navLinks = document.querySelectorAll('.sidebare a');
@@ -167,5 +196,7 @@
             document.querySelectorAll('.menu').forEach(menu => menu.classList.remove('active'));
         }
     });
+
+
 
 </script>
