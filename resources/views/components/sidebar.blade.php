@@ -57,8 +57,8 @@
 <div class="menu" id="resource-menu">
     <ul>
         <!-- Menu items for Resources -->
-        <li><a href="#" data-resource-view="my">My Resource</a></li>
-        <li><a href="#" data-resource-view="all">All Resource</a></li>
+        <li><a href="{{ route('resource.index') }}" data-resource-view="my" id="my-resource-link">My Resource</a></li>
+        <li><a href="{{ route('resource.index') }}" data-resource-view="all" id="all-resource-link">All Resource</a></li>
         
         <li><a href="#">Videos</a></li>
     </ul>
@@ -89,45 +89,66 @@
         <li><a href="#">Participants</a></li>
     </ul>
 </div>
-
-<!-- resource scripte for hid 1 or 2 div my resource or all resourece -->
-
 <script>
- // Function to toggle between My Resource and All Resource
-function toggleResourceView(view) {
-    const myResourceDiv = document.querySelector('.my-resource');
-    const allResourceDiv = document.querySelector('.all-resource');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to toggle between My Resource and All Resource
+        function toggleResourceView(view) {
+            const myResourceDiv = document.querySelector('.my-resource');
+            const allResourceDiv = document.querySelector('.all-resource');
 
-    // Hide both divs initially
-    myResourceDiv.style.display = 'none';
-    allResourceDiv.style.display = 'none';
+            // Show/hide divs based on the view
+            if (view === 'my') {
+                myResourceDiv.style.display = 'block';
+                allResourceDiv.style.display = 'none';
+            } else {
+                myResourceDiv.style.display = 'none';
+                allResourceDiv.style.display = 'block';
+            }
+        }
 
-    // Show the selected view
-    if (view === 'my') {
-        myResourceDiv.style.display = 'block';
-    } else if (view === 'all') {
-        allResourceDiv.style.display = 'block';
-    }
-}
+        // Initially hide both resource divs when the page loads
+        const myResourceDiv = document.querySelector('.my-resource');
+        const allResourceDiv = document.querySelector('.all-resource');
+        myResourceDiv.style.display = 'none';
+        allResourceDiv.style.display = 'none';
 
-// Add click event listener to the sidebar links for Resource
-document.querySelectorAll('[data-resource-view]').forEach(function(link) {
-    link.addEventListener('click', function() {
-        const view = this.getAttribute('data-resource-view');
-        toggleResourceView(view);
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        // Check if the URL contains the 'view' parameter and toggle resource view accordingly
+        const viewParam = getUrlParameter('view');
+        if (viewParam === 'all') {
+            toggleResourceView('all');
+        } else {
+            toggleResourceView('my');
+        }
+
+        // Add click event listener to the sidebar links for Resource
+        document.querySelectorAll('[data-resource-view]').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+
+                // Get the view type from the data attribute
+                const view = this.getAttribute('data-resource-view');
+                
+                // Toggle resource view
+                toggleResourceView(view);
+
+                // Redirect to the resource index page with the view type as a query parameter
+                const resourceIndexUrl = `${this.href}?view=${view}`;
+                window.location.href = resourceIndexUrl;
+            });
+        });
     });
-});
-
-// Initially show My Resource when the page loads
-toggleResourceView('my');
-
 </script>
-
 <script>
+    // Add click event listener to the sidebar links for Navigation
     const navLinks = document.querySelectorAll('.sidebare a');
-    const showMenuLink = document.getElementById('showMenu');
-
-    // Add click event listener to each navigation link
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
             // Remove active class from all links
@@ -180,23 +201,28 @@ toggleResourceView('my');
     }
 
     // Add click event listener to show menu link
-    showMenuLink.addEventListener('click', function(event) {
-        toggleMenu(); // Call toggleMenu to toggle menu visibility
-        event.preventDefault(); // Prevent default link behavior
-        event.stopPropagation(); // Prevent the event from propagating to the document click listener
-    });
+    const showMenuLink = document.getElementById('showMenu');
+    if (showMenuLink) {
+        showMenuLink.addEventListener('click', function(event) {
+            toggleMenu(); // Call toggleMenu to toggle menu visibility
+            event.preventDefault(); // Prevent default link behavior
+            event.stopPropagation(); // Prevent the event from propagating to the document click listener
+        });
+    }
 
-    // Add click event listener to close the menu when clicking outside of it or the sidebar
-    document.body.addEventListener('click', function(event) {
-        const isMenuClicked = document.querySelectorAll('.menu').some(menu => menu.contains(event.target));
-        const isSidebarClicked = event.target.closest('.sidebare');
-        const isShowMenuClicked = event.target.closest('#showMenu');
-
-        if (!isMenuClicked && !isSidebarClicked && !isShowMenuClicked) {
-            document.querySelectorAll('.menu').forEach(menu => menu.classList.remove('active'));
-        }
-    });
-
+// Function to hide menu when clicking outside
+document.addEventListener('click', function(event) {
+    const isClickInsideTop = document.querySelector('.top').contains(event.target);
+    const isClickInsideSidebar = event.target.closest('.sidebare');
+  
+    // If the click is not inside the top div, sidebar, or menu, hide all menus
+    if (!isClickInsideTop && !isClickInsideSidebar) {
+        // Hide all menus
+        document.querySelectorAll('.menu').forEach(function(menu) {
+            menu.classList.remove('active');
+        });
+    }
+});
 
 
 </script>

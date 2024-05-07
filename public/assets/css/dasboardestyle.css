@@ -307,7 +307,7 @@ aside .sidebare .mesage-count{
         display: none; /* Initially hide the menu */
         position: absolute;
         width: 200px; /* Width of the menu */
-        background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+        background-color: red; /* Transparent background */
         padding: 10px;
         z-index: 1; /* Ensure it's above other content */
         left: 200px; /* Position the menu 200px from the left edge of the navbar */

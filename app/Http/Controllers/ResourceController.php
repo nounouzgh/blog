@@ -33,10 +33,20 @@ public function index()
      foreach ($resources as $resource) {
         $resource->fileUrl = Storage::url($resource->lien);
     }
-    // Return the resources to the view
-    return view('resource.dashboard', ['resources' => $resources]);
-}
 
+    $allresources = Resource::paginate(4);
+
+    // Generate file URLs for each resource associated with the user
+    foreach ($allresources as $resource) {
+        $resource->fileUrl = Storage::url($resource->lien);
+    }
+
+    // Return both $resources and $allresources to the view
+    return view('resource.dashboard', [
+        'resources' => $resources,
+        'allresources' => $allresources
+    ]);
+}
 
     // Method to delete a resource work
    // Method to delete a resource
