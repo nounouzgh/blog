@@ -45,15 +45,20 @@
                         <a href="{{ route('resource.download', ['id' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">download</span></a>
                     </div>
                 </td>
+                <td colspan="3"></td>
             </tr>
     
             @empty
             <tr>
                 <td colspan="3">No resources found.</td>
+                <td colspan="3"></td>
+                <td colspan="3"></td>
             </tr>
+ 
             @endforelse
             <tr></tr>
         </tbody>
+     
     </table>
     
     <!-- Pagination Links -->

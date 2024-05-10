@@ -149,9 +149,7 @@
             <!-- End of resource table -->
         </div>
         <div class="all-resource"  >
-            @if($allresources->isNotEmpty())
             <x-ListAnnounce :resources="$allresources" />
-        @endif
         </div>
     </div>
     </x-slot>
