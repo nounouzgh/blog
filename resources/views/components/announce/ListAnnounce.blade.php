@@ -16,6 +16,7 @@
         <table class="table table-3d">
         <thead>
             <tr>
+                <th>icon</th>
                 <th>User name </th>
                 <th>Role</th>
                 <th>Resource Name</th>
@@ -28,6 +29,13 @@
         <tbody>
             @forelse($resources as $resource)
             <tr>
+                <td>  <div class="profile-photo">
+                    @if($resource->user->image)
+                    <img  src="{{ asset($resource->user->image) }}" alt="Click to Open Menu" id="menuImage">
+                     @else
+                     <img src="{{ asset('storage/profile/man/face.jpg') }}" alt="Click to Open Menu" id="menuImage">
+                     @endif
+                </div></td>
                 <td>{{ $resource->user->name }}</td>
                 <td>{{ $resource->user->role->name }}</td>
                 <td>{{ $resource->name }}</td>
