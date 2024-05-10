@@ -60,7 +60,7 @@
         <li><a href="{{ route('resource.index', ['view' => 'my']) }}" data-resource-view="my" id="my-resource-link">My Resource</a></li>
         <li><a href="{{ route('resource.index', ['view' => 'all']) }}" data-resource-view="all" id="all-resource-link">All Resource</a></li>
         
-        <li><a href="#">Videos</a></li>
+      
     </ul>
 </div>
 

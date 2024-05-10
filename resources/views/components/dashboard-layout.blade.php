@@ -16,9 +16,6 @@
      <link rel="stylesheet" href="{{ asset('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200') }}">
      <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon" />
       <!--  nave bare incu -->
-
-   
-
 </head>
 <body>
 <body>
@@ -102,11 +99,8 @@
     :count="'3849'" 
     />
 
-     <!-- Include the component with data -->
- 
-     <x-add-resource-button icon="add" title="Add Product" />
-
-     
+  
+      
             </div>
         </div>
     </div>
@@ -114,3 +108,4 @@
     <script src="{{ asset('assets/js/dasboardestyle.js') }}"></script>
 </body>
 </html>
+
