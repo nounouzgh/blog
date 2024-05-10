@@ -22,8 +22,13 @@
         <!-- Profile photo -->
         <!-- Profile photo -->
         <div class="profile-photo">
-            <img src="{{ asset('assets/images/profile-' . $profileNumber . '.png') }}" alt="Click to Open Menu" id="menuImage">
+            @if($image)
+            <img  src="{{ asset($image) }}" alt="Click to Open Menu" id="menuImage">
+             @else
+             <img src="{{ asset('storage/profile/man/face.jpg') }}" alt="Click to Open Menu" id="menuImage">
+             @endif
         </div>
+   
 
        <!--  le menu du profile -->
        <div class="action" id="action">                            

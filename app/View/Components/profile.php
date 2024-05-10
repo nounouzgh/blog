@@ -25,9 +25,9 @@ class Profile extends Component
     /**
      * The profile number of the user.
      *
-     * @var int
+     * @var string
      */
-    public $profileNumber;
+    public $image;
 
     /**
      * Create a new component instance.
@@ -36,11 +36,11 @@ class Profile extends Component
      * @param string $role
      * @param int $profileNumber
      */
-    public function __construct($name, $role, $profileNumber)
+    public function __construct($name, $role, $image)
     {
         $this->name = $name;
         $this->role = $role;
-        $this->profileNumber = $profileNumber;
+        $this->image = $image;
     }
 
     /**

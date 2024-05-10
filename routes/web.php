@@ -43,6 +43,9 @@ Route::get('/resources', [ResourceController::class, 'index'])->name('resources.
 
 
 
+Route::post('/updateProfileImage', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
+
+
 
 require __DIR__.'/NoRole.php';
 require __DIR__.'/auth.php';

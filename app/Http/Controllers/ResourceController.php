@@ -167,24 +167,33 @@ public function edit($id)
 
 
 
+
 public function search(Request $request)
 {
     $query = $request->input('query');
-  
-    // Query resources based on the search query
-    $resources = Resource::where('name', 'like', "%$query%")
-                        ->orWhere('description', 'like', "%$query%")
-                        ->paginate(3); // Paginate the results directly
+    $view = $request->input('view');
 
-    // Generate file URLs for each resource
-    $resources->each(function ($resource) {
-        $resource->fileUrl = Storage::url($resource->lien);
-    });
+    // Query resources based on the search query and the type of resource view
+    if ($view === 'my') {
+        $userId = Auth::id(); // Get the authenticated user's ID
+        $resources = Resource::where('user_id', $userId)
+                             ->where(function($queryBuilder) use ($query) {
+                                 $queryBuilder->where('name', 'like', "%$query%")
+                                              ->orWhere('description', 'like', "%$query%");
+                             })
+                             ->paginate(3);
+    } else {
+        $resources = Resource::where('name', 'like', "%$query%")
+                             ->orWhere('description', 'like', "%$query%")
+                             ->paginate(3);
+    }
+
+    // Pass both $resources and $allresources to the view
+    $allresources = $resources;
 
     // Return the search results to the view
-    return view('resource.dashboard', compact('resources', 'query'));
+    return view('resource.dashboard', compact('resources', 'query', 'allresources', 'view'));
 }
-
 
 // show fille 2
 public function viewFile($id)

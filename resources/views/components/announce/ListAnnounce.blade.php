@@ -1,47 +1,61 @@
 <div class="recent-order">
     <h2>List Announce</h2>
-    <table>
+        <!-- Search Bar -->
+        <div class="search-container">
+            <form action="{{ route('resource.search') }}" method="GET" class="mb-3">
+                <div class="input-group">
+                    <input type="text" id="searchInput" name="query" class="form-control" placeholder="Search resources...">
+                    <input type="hidden" name="view" value="all">
+                </div>
+            </form>
+
+            
+        </div>
+    <!-- Table to display existing resources -->
+    <div class="table-container">
+        <table class="table table-3d">
         <thead>
             <tr>
+                <th>User name </th>
+                <th>Role</th>
                 <th>Resource Name</th>
                 <th>Resource description</th>
                 <th>Resource lien</th>
-                <th>Resource Status</th>
+                <th>Action</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @forelse($resources as $resource)
             <tr>
+                <td>{{ $resource->user->name }}</td>
+                <td>{{ $resource->user->role->name }}</td>
                 <td>{{ $resource->name }}</td>
                 <td>{{ $resource->description }}</td>
                 <td>{{ $resource->lien }}</td>
                 <td>
-                 
-                    <!-- Edit Resource Button -->
-                    <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                  <!-- View File 1 Button -->
-                  <a href="{{ $resource->fileUrl }}" target="_blank" class="btn btn-secondary btn-sm">View File 1</a>
-                  <!-- View File 2 Button -->
-                  <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm">View File2</a>
-    
-                  <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm">comments</a>
-                 <!-- Delete Resource Button -->
-                 <form action="{{ route('resource.destroy', $resource->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                </form>
-                </tr>
+                    <div class="btn-group d-flex" role="group" style="white-space: nowrap;">
+                        <!-- Delete Resource Button -->
+                   
+                        <!-- Edit Resource Button -->
+                        <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">upgrade</span></a>
+                        <!-- View File 2 Button -->
+                        <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">visibility</span></a>
+                        <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">comment</span></a>
+                        <a href="{{ route('resource.download', ['id' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">download</span></a>
+                    </div>
+                </td>
+            </tr>
     
             @empty
             <tr>
                 <td colspan="3">No resources found.</td>
             </tr>
             @endforelse
+            <tr></tr>
         </tbody>
     </table>
-
+    
     <!-- Pagination Links -->
     @if ($resources->hasPages())
     <div class="pagination" style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
@@ -96,47 +110,24 @@
     </div>
     @endif
 
-    <style>
-        /* Pagination styles */
-        .pagination-list {
-            display: inline-flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .page-item {
-            margin-right: 5px; /* Adjust spacing between pagination items */
-        }
-
-        .page-link {
-            display: inline-block;
-            padding: 5px 10px; /* Adjust padding as needed */
-            text-decoration: none;
-            color: #007bff; /* Link color */
-            background-color: #fff;
-            border: 1px solid #dee2e6;
-            border-radius: .25rem;
-        }
-
-        .page-link:hover {
-            color: #0056b3; /* Hover color */
-            background-color: #e9ecef;
-            border-color: #dee2e6;
-        }
-
-        .page-item.disabled .page-link {
-            pointer-events: none;
-            cursor: not-allowed;
-            color: #6c757d;
-            background-color: #e9ecef;
-            border-color: #dee2e6;
-        }
-
-        .page-item.active .page-link {
-            color: #fff;
-            background-color: #007bff; /* Active background color */
-            border-color: #007bff;
-        }
-    </style>
+   
 </div>
+<style>
+
+
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .btn-group.d-flex {
+        display: flex; /* Use flexbox layout */
+        flex-wrap: nowrap; /* Prevent wrapping to next line */
+        justify-content: flex-start; /* Align items to the start of the container */
+    }
+
+    .btn-group.d-flex .btn,
+    .btn-group.d-flex form {
+        margin-right: 5px; /* Add margin between buttons */
+    }
+</style>

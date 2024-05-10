@@ -14,6 +14,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('prenom')->nullable();
+            $table->string('image')->nullable();
             $table->integer('role_id');
             $table->unsignedBigInteger('compte_id')->nullable(); // Corrected column definition
             $table->timestamps();

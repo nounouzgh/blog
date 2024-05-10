@@ -16,6 +16,7 @@ class User extends Authenticatable
         'prenom',
         'compte_id',
         'role_id', // Make sure 'role_id' is included here
+        'image',
     ];
 
     public function role()

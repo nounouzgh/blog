@@ -3,7 +3,7 @@
     <x-slot name="contenu">
   
         <div class="info-container">
-            <div class="my-resource">
+            <div class="my-resource" >
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
@@ -36,16 +36,23 @@
                     </div>
                 </div>
             </div>
+
+               <!-- Search Bar -->
+               <div class="search-container">
+                <form action="{{ route('resource.search') }}" method="GET" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" name="query" class="form-control" placeholder="Search resources...">
+                        <input type="hidden" name="view" value="my">
+                    </div>
+                </form>
+                
+              
+            </div>
             <!-- Table to display existing resources -->
             <div class="table-container">
                 <table class="table table-3d">
                     <thead>
-                        <!-- Search Bar -->
-                        <form action="{{ route('resource.search') }}" method="GET" class="mb-3">
-                            <div class="input-group">
-                                <input type="text" name="query" class="form-control" placeholder="Search resources...">
-                            </div>
-                        </form>
+                     
                         <tr>
                             <th>Name</th>
                             <th>Description</th>
@@ -69,11 +76,11 @@
                                         <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">visibility</span></a>
                                         <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">comment</span></a>
                                         <a href="{{ route('resource.download', ['id' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">download</span></a>
-                                        <form action="{{ route('resource.destroy', $resource->id) }}" method="POST" style="display: inline-block;">
+                                        <a><form action="{{ route('resource.destroy', $resource->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm btn-3d mr-1"><span class="material-symbols-outlined">delete</span></button>
-                                        </form>
+                                        </form> </a>
                                     </div>
                                 </td>
                             </tr>
@@ -82,6 +89,7 @@
                                 <td colspan="4">No resources found.</td>
                             </tr>
                         @endforelse
+                    <tr></tr>
                     </tbody>
                 </table>
             </div>
@@ -140,7 +148,7 @@
             @endif
             <!-- End of resource table -->
         </div>
-        <div class="all-resource" style="display: none;">
+        <div class="all-resource"  >
             @if($allresources->isNotEmpty())
             <x-ListAnnounce :resources="$allresources" />
         @endif
@@ -161,6 +169,7 @@
 
 <!-- Script for toggling form visibility -->
 <script>
+    // hid element by defautlt need this for when i call from side bare  to hid all div that need be hid
     document.addEventListener('DOMContentLoaded', function () {
         // Toggle form visibility
         const toggleButton = document.getElementById('toggleForm');
@@ -169,6 +178,26 @@
         toggleButton.addEventListener('click', function () {
             createForm.classList.toggle('d-none');
         });
+    });
+</script>
+
+<script>
+    // this one is show proper div after i call controler sharch
+    document.addEventListener('DOMContentLoaded2', function() {
+        // Get the value of the 'view' parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
+
+        // Select the div element
+        const allResourceDiv = document.querySelector('.all-resource');
+        const myResourceDiv = document.querySelector('.my-resource');
+        // If the 'view' parameter is not set or it's not equal to 'all', hide the div
+        if (!viewParam || viewParam !== 'all') {
+            allResourceDiv.style.display = 'none';
+        }
+        if (!viewParam || viewParam !== 'my') {
+            myResourceDiv.style.display = 'none';
+        }
     });
 </script>
 
@@ -314,5 +343,38 @@
         color: #fff;
         background-color: #007bff; /* Active background color */
         border-color: #007bff;
+    }
+
+    .search-container {
+        margin-top: 1%;
+    margin-bottom: 2px;
+  }
+  .search-container input[type=text] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f8f8f8;
+    transition: border-color 0.3s ease-in-out;
+  }
+  .search-container input[type=text]:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px #66afe9;
+  }
+  tr:hover td {
+    background-color: #e0e0e0;
+  }
+  .btn-group.d-flex {
+        display: flex; /* Use flexbox layout */
+        flex-wrap: nowrap; /* Prevent wrapping to next line */
+        justify-content: flex-start; /* Align items to the start of the container */
+    }
+
+    .btn-group.d-flex .btn,
+    .btn-group.d-flex form {
+        margin-right: 5px; /* Add margin between buttons */
     }
 </style>

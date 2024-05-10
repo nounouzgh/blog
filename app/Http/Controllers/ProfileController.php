@@ -57,4 +57,46 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    
+    public function updateProfileImage(Request $request)
+{
+    try {
+        // Retrieve the authenticated compte and its associated user
+        $compte = Auth::guard('compte')->user();
+
+        // Check if the compte exists
+        if (!$compte) {
+            throw new \Exception('Compte not found', 404);
+        }
+
+        // Retrieve the associated user
+        $user = $compte->user;
+
+        // Check if the user exists
+        if (!$user) {
+            throw new \Exception('User not found', 404);
+        }
+
+        // Retrieve the image link from the request
+        $imageLink = $request->input('profile_image_src');
+
+        // Remove any part of the URL before the "storage" directory  for remouve sever and port
+        $storageIndex = strpos($imageLink, 'storage');
+        if ($storageIndex !== false) {
+            $imageLink = substr($imageLink, $storageIndex);
+        }
+        // Update the user's profile image
+        $user->update([
+            'image' => $imageLink
+        ]);
+    
+
+        // Redirect back to the previous page
+        return back()->with('success', 'Profile image updated successfully');
+    } catch (\Exception $e) {
+        // Handle exceptions
+        return back()->with('error', $e->getMessage());
+    }
+}
 }

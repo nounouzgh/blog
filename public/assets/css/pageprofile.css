@@ -1,0 +1,187 @@
+
+
+    .insights {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f2f2f2;
+        width: 400%; /* Set width to 100% */
+        height: 100%; /* Set height to 100% */
+    }
+
+    .info-container {
+        width: 95%; /* Set width to 100% */
+        height: 95%; /* Set height to 100% */
+        margin-left: 5%;/* Move the container to the right */
+        max-width: 700px; /* Adjust max-width as needed */
+        align-items: center;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-sizing: border-box; /* Include padding and border in width and height calculations */
+    }
+
+    .info-container .user-info {
+        border: 2px solid #007bff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    .info-container .user-info p {
+        margin-bottom: 10px;
+    }
+
+    .info-container .user-info button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .info-container .delete-form button {
+        background-color: #dc3545;
+    }
+
+    .success-message {
+        color: green;
+        margin-top: 10px;
+    }
+
+    /* CSS for input fields */
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    /* CSS for Edit button */
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    /* CSS for Cancel button */
+    button.cancel {
+        background-color: #dc3545;
+    }
+
+ /* CSS for image profile*/
+ 
+
+  /* List styling */
+  .profile-list {
+    list-style: none;
+    padding: 0;
+    /* You can move list styling to a separate CSS file */
+  }
+  
+  /* Profile item styling */
+  .profile-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    /* You can move profile item styling to a separate CSS file */
+  }
+  
+  /* Profile image styling */
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* You can move profile image styling to a separate CSS file */
+  }
+  
+    /* Overlay styling */
+  #overlay {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    /* You can move overlay styling to a separate CSS file */
+  }
+  
+  /* Image list container styling */
+  #imageListContainer {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border: 2px solid #ccc; /* Border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    z-index: 1000;
+    /* You can move image list container styling to a separate CSS file */
+  }
+  
+  /* Background image styling */
+  #imageListBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Adjust the opacity as needed */
+    z-index: -1;
+    /* You can move background image styling to a separate CSS file */
+  }
+  
+  /* Image list styling */
+  #imageList {
+    margin-top: 10px;
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    max-height: 300px; /* Set maximum height for the list */
+    /* You can move image list styling to a separate CSS file */
+  }
+  
+  #imageList table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #imageList table td {
+    width: 20%;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  #imageList table td img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  #imageList table td img:hover {
+    opacity: 0.8;
+  }
+  
+  #imageList table td img:active {
+    opacity: 0.6;
+  }

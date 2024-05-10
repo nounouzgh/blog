@@ -4,7 +4,47 @@
         <div class="info-container">
       
             <h2>Student Details:</h2>
-        
+
+        <!-- Overlay container -->
+        <div id="overlay">
+        <!-- Image list container -->
+        <div id="imageListContainer">
+            <!-- Background image -->
+            <div id="imageListBackground"></div>
+            <!-- Image list -->
+            <div id="imageList" style="display: none;"></div>
+        </div>
+        </div>
+
+        <!-- Profile list -->
+        <ul class="profile-list">
+        <!-- Profile item -->
+        <li class="profile-item">
+            <h3>Profile 1</h3>
+            <!-- Profile image container -->
+            <div class="profile-image-container">
+      <!-- Wrap the image and the button inside a form element -->
+        <form id="profileImageForm" action="{{ route('updateProfileImage') }}" method="POST">
+            @csrf
+            <!-- Set default profile image path here -->
+            @if($user->image)
+            <img class="profile-image" src="{{ asset($user->image) }}" alt="Profile Image" onclick="toggleImageList()">
+             @else
+             <img class="profile-image" src="{{ asset('storage/profile/man/face.jpg') }}" alt="Profile Image" onclick="toggleImageList()">
+            @endif
+             <!-- Hidden input to store the image source -->
+            <input type="hidden" class="profile-image" name="profile_image_src" value="{{ asset('storage/profile/man/face.jpg') }}">
+            <!-- Edit button -->
+            <button type="submit">Update Image</button>
+        </form>
+
+            @if(session('success'))
+                <div class="alert alert-info">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </li>
+</ul>
             <!-- Display current information -->
             <div class="user-info">
                 <p>Name: {{ $user->name }}</p>
@@ -118,94 +158,5 @@
 </x-dashboard-layout>
 
 
-<style>
-    .insights {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f2f2f2;
-        width: 400%; /* Set width to 100% */
-        height: 100%; /* Set height to 100% */
-    }
-
-    .info-container {
-        width: 95%; /* Set width to 100% */
-        height: 95%; /* Set height to 100% */
-        margin-left: 5%;/* Move the container to the right */
-        max-width: 700px; /* Adjust max-width as needed */
-        align-items: center;
-        padding: 20px;
-        background-color: white;
-        border: 1px solid #ccc;
-        box-sizing: border-box; /* Include padding and border in width and height calculations */
-    }
-
-    .info-container .user-info {
-        border: 2px solid #007bff;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-    }
-
-    .info-container .user-info p {
-        margin-bottom: 10px;
-    }
-
-    .info-container .user-info button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .info-container .delete-form button {
-        background-color: #dc3545;
-    }
-
-    .success-message {
-        color: green;
-        margin-top: 10px;
-    }
-
-    /* CSS for input fields */
-    input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-    }
-
-    /* CSS for Edit button */
-    button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-bottom: 10px;
-    }
-
-    /* CSS for Cancel button */
-    button.cancel {
-        background-color: #dc3545;
-    }
-</style>
-<script>
-    function toggleEditForm() {
-        var form = document.getElementById("editForm");
-        var button = document.querySelector("button");
-        if (form.style.display === "none") {
-            form.style.display = "block";
-            button.textContent = "Cancel";
-        } else {
-            form.style.display = "none";
-            button.textContent = "Edit";
-        }
-    }
-</script>
+<link rel="stylesheet" href="{{ asset('assets/css/pageprofile.css') }}">
+<script src="{{ asset('assets/js/menuforprofileimage.js') }}"></script>

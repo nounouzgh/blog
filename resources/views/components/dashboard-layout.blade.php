@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>default {{ config('app.name') }}</title>
+  
+    <title>{{ config('app.name')}}</title>
     <!-- #css  this page -->
     <link rel="stylesheet" href="{{ asset('assets/css/dasboardestyle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/MultiPlatforme.css') }}">
@@ -22,8 +23,11 @@
 <body>
 <body>
     <div class="container">
+        @php
+        $user = Auth::guard('compte')->user()->user;
+        @endphp
         <!-- Sidebar -->
-        <x-sidebar />
+        <x-sidebar role="{{ $user->role->name }}"/>
         
         <!-- Main content -->
         <main>
@@ -37,10 +41,8 @@
         <!-- Right side content -->
         <div class="right">
             <!-- Top section -->
-            @php
-                $user = Auth::guard('compte')->user()->user;
-            @endphp
-            <x-profile name="{{ $user->name }}" role="{{ $user->role->name }}" profileNumber="1" />
+         
+            <x-profile name="{{ $user->name }}" role="{{ $user->role->name }}" image="{{ $user->image }}" />
 
             <!-- Recent updates section -->
             <div class="recent-updates">
