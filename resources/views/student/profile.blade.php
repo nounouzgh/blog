@@ -99,62 +99,6 @@
             @endif
         </div> 
 </x-slot>
-
-<!-- Recent Updates section -->
-<x-slot name="recentUpdates">
-    <x-update 
-    :profileNumber="1"
-    :name="'Mike Tyzon'"
-    :cour="'informatique'"
-    :description="'intergation'"
-    :timer="'2 minutes ago'"
-/>
-    <x-update 
-    :profileNumber="1"
-    :name="'Mike Tyzon'"
-    :cour="'informatique'"
-    :description="'intergation'"
-    :timer="'2 minutes ago'"
-/>
-<x-update 
-:profileNumber="1"
-:name="'Mike Tyzon'"
-:cour="'informatique'"
-:description="'intergation'"
-:timer="'2 minutes ago'"
-/>
-
-</x-slot>
-
-<!-- List Coure section -->
-<x-slot name="ListCoure">
-    <x-itemcostomers
-    :icon="'forum'" 
-    :title="'Online Forum'" 
-    :subtitle="'Last 24 hours'" 
-    :percentage="'60%'" 
-    :count="'3849'" 
-    />
-    <x-itemoffline
-    :icon="'forum'" 
-    :title="'Online Forum'" 
-    :subtitle="'Last 24 hours'" 
-    :percentage="'39%'" 
-    :count="'3849'" 
-    />
-    <x-itemonline
-    :icon="'forum'" 
-    :title="'Online Forum'" 
-    :subtitle="'Last 24 hours'" 
-    :percentage="'39%'" 
-    :count="'3849'" 
-    />
-
-     <!-- Include the component with data -->
- 
-     <x-add-resource-button icon="add" title="Add Product" />
-
-</x-slot>
 </x-dashboard-layout>
 
 

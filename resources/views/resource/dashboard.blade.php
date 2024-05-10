@@ -154,15 +154,6 @@
     </div>
     </x-slot>
 
-    <!-- Recent Updates section -->
-    <x-slot name="recentUpdates">
-        <!-- Add recent updates here -->
-    </x-slot>
-
-    <!-- List Course section -->
-    <x-slot name="ListCoure">
-        <!-- Add list of courses here -->
-    </x-slot>
 </x-dashboard-layout>
 
 <!-- Script for toggling form visibility -->

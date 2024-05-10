@@ -20,14 +20,12 @@ class CommentsController extends Controller
     {
         // Load the resource
         $resource = Resource::findOrFail($resourceId);
-        
-        // Load comments for the resource with pagination
-        $comments = $resource->comments()->paginate(3); // Change 10 to your desired number of items per page
-        
+    
+        // Load comments for the resource
+        $comments = $resource->comments;
+    
         return view('resource.comment', compact('resource', 'comments'));
     }
-    
-
 
 
     /**
