@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use App\Models\ResourceSignal;
+
 class ResourceController extends Controller
 {
     
@@ -257,4 +259,7 @@ public function downloadFile($id)
             'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
         ]);
     }
+
+
+    
 }

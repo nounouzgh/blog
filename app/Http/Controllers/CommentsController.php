@@ -23,7 +23,6 @@ class CommentsController extends Controller
         
         // Load comments for the resource with pagination
         $comments = $resource->comments()->paginate(3); // Change 10 to your desired number of items per page
-        
         return view('resource.comment', compact('resource', 'comments'));
     }
     

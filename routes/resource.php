@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\CommentsController;
-
+use App\Http\Controllers\SignalResourceController;
 
 Route::post('/resource/dashboard', [ResourceController::class, 'store'])->name('resource.store');
 // test controlle pase data and get it in blade test
@@ -51,3 +51,7 @@ Route::post('/resources/{resource}/comments', [CommentsController::class, 'store
 
 // Route to delete a comment
 Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+
+Route::get('/resources/{resourceId}/signal', [SignalResourceController::class, 'show'])->name('resource.signal.show');
+
+Route::post('/resources/{id}/signal', [SignalResourceController::class, 'store'])->name('resource.signal.store');

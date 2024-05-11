@@ -32,9 +32,7 @@
 
        <!--  le menu du profile -->
        <div class="action" id="action">                            
-        
         @include('layouts.navigation')
-
 
         <!-- Pass the user role to the navigation component -->                                                   
     </div>

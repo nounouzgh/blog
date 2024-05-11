@@ -31,4 +31,12 @@ class Resource extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+   /**
+     * Get the signals for the resource.
+     */
+    public function signals()
+    {
+        return $this->hasMany(ResourceSignal::class);
+    }
 }

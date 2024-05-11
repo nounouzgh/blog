@@ -31,9 +31,9 @@
             <tr>
                 <td>  <div class="profile-photo">
                     @if($resource->user->image)
-                    <img  src="{{ asset($resource->user->image) }}">
+                    <img  src="{{ asset($resource->user->image) }}" alt="Click to Open Menu" id="menuImage">
                      @else
-                     <img src="{{ asset('storage/profile/man/face.jpg') }}">
+                     <img src="{{ asset('storage/profile/man/face.jpg') }}" alt="Click to Open Menu" id="menuImage">
                      @endif
                 </div></td>
                 <td>{{ $resource->user->name }}</td>
@@ -47,11 +47,7 @@
                    
                         <!-- Edit Resource Button -->
                         
-                        @if($resource->user->id === auth()->user()->id)
-                        <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary btn-sm btn-3d mr-1">
-                            <span class="material-symbols-outlined">upgrade</span>
-                        </a>
-                          @endif
+                        <a href="{{ route('resource.edit', $resource->id) }}" class="btn btn-primary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">upgrade</span></a>
                         <!-- View File 2 Button -->
                         <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">visibility</span></a>
                         <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">comment</span>
