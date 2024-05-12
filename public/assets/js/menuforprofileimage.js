@@ -6,7 +6,9 @@
         "/storage/profile/man/haker.jpg",
         "/storage/profile/man/robo.jpg",
         "/storage/profile/woman/panda.jpg",
-        "/storage/profile/woman/woman.jpg"
+        "/storage/profile/woman/woman.jpg",
+        "/storage/profile/woman/woman2.jpg"
+     
     ];
     var backgroundImageUrl = "/storage/profile/Background/profile.png";
     var manPaths = [];

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use App\Models\ResourceSignal;
+use Illuminate\Http\Response;
+
+
 class ResourceController extends Controller
 {
     
@@ -33,10 +37,20 @@ public function index()
      foreach ($resources as $resource) {
         $resource->fileUrl = Storage::url($resource->lien);
     }
-    // Return the resources to the view
-    return view('resource.dashboard', ['resources' => $resources]);
-}
 
+    $allresources = Resource::paginate(4);
+
+    // Generate file URLs for each resource associated with the user
+    foreach ($allresources as $resource) {
+        $resource->fileUrl = Storage::url($resource->lien);
+    }
+
+    // Return both $resources and $allresources to the view
+    return view('resource.dashboard', [
+        'resources' => $resources,
+        'allresources' => $allresources
+    ]);
+}
 
     // Method to delete a resource work
    // Method to delete a resource
@@ -157,27 +171,35 @@ public function edit($id)
 
 
 
+
 public function search(Request $request)
 {
     $query = $request->input('query');
-  
-    // Query resources based on the search query
-    $resources = Resource::where('name', 'like', "%$query%")
-                        ->orWhere('description', 'like', "%$query%")
-                        ->paginate(3); // Paginate the results directly
+    $view = $request->input('view');
 
-    // Generate file URLs for each resource
-    $resources->each(function ($resource) {
-        $resource->fileUrl = Storage::url($resource->lien);
-    });
+    // Query resources based on the search query and the type of resource view
+    if ($view === 'my') {
+        $userId = Auth::id(); // Get the authenticated user's ID
+        $resources = Resource::where('user_id', $userId)
+                             ->where(function($queryBuilder) use ($query) {
+                                 $queryBuilder->where('name', 'like', "%$query%")
+                                              ->orWhere('description', 'like', "%$query%");
+                             })
+                             ->paginate(3);
+    } else {
+        $resources = Resource::where('name', 'like', "%$query%")
+                             ->orWhere('description', 'like', "%$query%")
+                             ->paginate(3);
+    }
+
+    // Pass both $resources and $allresources to the view
+    $allresources = $resources;
 
     // Return the search results to the view
-    return view('resource.dashboard', compact('resources', 'query'));
+    return view('resource.dashboard', compact('resources', 'query', 'allresources', 'view'));
 }
 
-
-// show fille 2
-public function viewFile($id)
+public function viewFileshow($id)
 {
     // Find the resource by its ID
     $resource = Resource::find($id);
@@ -187,27 +209,74 @@ public function viewFile($id)
         return response()->json(['message' => 'Resource not found'], 404);
     }
 
-    // Specify the file path relative to the root directory of the storage disk
-    // i did need to add public for show resource
-    $filePath = 'public/' . $resource->lien;
-
-   
-    // Check if the file exists
-    if (!Storage::exists($filePath)) {
-        return response()->json(['message' => 'File not found'], 404);
-    }
-
-    // Get the file's MIME type
-    $mimeType = Storage::mimeType($filePath);
-
-    // Return the file as a streamed response
-    return response()->stream(function () use ($filePath) {
-        $stream = Storage::readStream($filePath);
-        fpassthru($stream);
-        fclose($stream);
-    }, 200, [
-        'Content-Type' => $mimeType,
-        'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"',
-    ]);
+    // Pass the resource to the blade view
+    return view('resource.view-file', compact('resource'));
 }
+
+
+
+
+
+public function downloadFile($id)
+    {
+        // Find the resource by its ID
+        $resource = Resource::find($id);
+
+        // Check if the resource exists
+        if (!$resource) {
+            return response()->json(['message' => 'Resource not found'], 404);
+        }
+
+        // Specify the file path relative to the root directory of the storage disk
+        $filePath = 'public/' . $resource->lien;
+
+        // Check if the file exists
+        if (!Storage::exists($filePath)) {
+            return response()->json(['message' => 'File not found'], 404);
+        }
+
+        // Get the file's MIME type
+        $mimeType = Storage::mimeType($filePath);
+
+        // Return the file as a downloadable response
+        return response()->download(storage_path('app/' . $filePath), basename($filePath), [
+            'Content-Type' => $mimeType,
+            'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
+        ]);
+    }
+    
+
+    
+    public function view_filerun($id)
+    {
+        // Find the resource by its ID
+        $resource = Resource::find($id);
+        dd($resource);
+        // Check if the resource exists
+        if (!$resource) {
+            return response()->json(['message' => 'Resource not found'], 404);
+        }
+    
+        // Specify the file path relative to the root directory of the storage disk
+        $filePath = 'public/' . $resource->lien;
+    
+        // Check if the file exists
+        if (!Storage::exists($filePath)) {
+            return response()->json(['message' => 'File not found'], 404);
+        }
+    
+        // Get the file's MIME type
+        $mimeType = Storage::mimeType($filePath);
+       
+        // Set the correct headers
+        $headers = [
+            'Content-Type' => $mimeType,
+        ];
+         
+        // Return the response with the correct headers
+        return response()->file(storage_path('app/' . $filePath), $headers);
+    }
+    
+    
+    
 }

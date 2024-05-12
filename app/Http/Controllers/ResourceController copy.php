@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Models\ResourceSignal;
-use Illuminate\Http\Response;
-
 
 class ResourceController extends Controller
 {
@@ -199,7 +197,8 @@ public function search(Request $request)
     return view('resource.dashboard', compact('resources', 'query', 'allresources', 'view'));
 }
 
-public function viewFileshow($id)
+
+public function viewFile($id)
 {
     // Find the resource by its ID
     $resource = Resource::find($id);
@@ -209,19 +208,56 @@ public function viewFileshow($id)
         return response()->json(['message' => 'Resource not found'], 404);
     }
 
-// Specify the file path relative to the root directory of the storage disk
-$filePath = 'public/' . $resource->lien;
-// Get the file extension
+    // Specify the file path relative to the root directory of the storage disk
+    // Assume the file is stored in the 'public' disk
+    $filePath = 'public/' . $resource->lien;
 
-// Get the file's MIME type
-$mimeType = Storage::mimeType($filePath);
- 
-    return view('resource.view-file', compact('resource','mimeType'));
+    // Check if the file exists
+    if (!Storage::exists($filePath)) {
+        return response()->json(['message' => 'File not found'], 404);
+    }
+
+    // Generate the URL for the file
+    $fileUrl = Storage::url($filePath);
+
+    // Pass the file URL to the view
+    return view('dashboard.view_file', ['fileUrl' => $fileUrl]);
 }
 
+// show fille 2
+public function viewFile2($id)
+{
+    // Find the resource by its ID
+    $resource = Resource::find($id);
 
+    // Check if the resource exists
+    if (!$resource) {
+        return response()->json(['message' => 'Resource not found'], 404);
+    }
 
+    // Specify the file path relative to the root directory of the storage disk
+    // i did need to add public for show resource
+    $filePath = 'public/' . $resource->lien;
 
+   
+    // Check if the file exists
+    if (!Storage::exists($filePath)) {
+        return response()->json(['message' => 'File not found'], 404);
+    }
+
+    // Get the file's MIME type
+    $mimeType = Storage::mimeType($filePath);
+
+    // Return the file as a streamed response
+    return response()->stream(function () use ($filePath) {
+        $stream = Storage::readStream($filePath);
+        fpassthru($stream);
+        fclose($stream);
+    }, 200, [
+        'Content-Type' => $mimeType,
+        'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"',
+    ]);
+}
 
 public function downloadFile($id)
     {
@@ -250,41 +286,7 @@ public function downloadFile($id)
             'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
         ]);
     }
-    
-    public function view_fileinCader($id)
-    {
-       
-        // Find the resource by its ID
-        $resource = Resource::find($id);
-       
-        // Check if the resource exists
-        if (!$resource) {
-            return response()->json(['message' => 'Resource not found'], 404);
-        }
-    
-        // Specify the file path relative to the root directory of the storage disk
-        $filePath = 'public/' . $resource->lien;
-    
-        // Check if the file exists
-        if (!Storage::exists($filePath)) {
-            return response()->json(['message' => 'File not found'], 404);
-        }
-    
-        // Get the file's MIME type
-        $mimeType = Storage::mimeType($filePath);
-    
- 
-        // Set the correct headers
-        $headers = [
-            'Content-Type' => $mimeType,
-        ];
-    
-    
-        // Return the response with the correct headers
-        return response()->file(storage_path('app/' . $filePath), $headers);
-       
-    }
-    
-    
+
+
     
 }

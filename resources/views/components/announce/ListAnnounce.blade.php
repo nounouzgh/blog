@@ -53,7 +53,7 @@
                         </a>
                           @endif
                         <!-- View File 2 Button -->
-                        <a href="{{ route('resource.view-file', $resource->id) }}" class="btn btn-secondary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">visibility</span></a>
+                        <a href="{{ route('resource.viewFileshow', $resource->id) }}" class="btn btn-secondary btn-sm btn-3d mr-1"><span class="material-symbols-outlined">visibility</span></a>
                         <a href="{{ route('comments.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">comment</span>
                             <span class="message-count">{{ $resource->comments->count() }}</span>      </a>
                         <a href="{{ route('resource.download', ['id' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"><span class="material-symbols-outlined">download</span></a>

@@ -37,7 +37,11 @@ Route::get('/storage/{file}', function ($file) {
 })->where('file', '.*');
 
 // view fille resourece verrssion 2
-Route::get('/resource/{id}/view-file', [ResourceController::class, 'viewFile'])->name('resource.view-file');
+
+Route::get('/resource/{id}/viewFileshow', [ResourceController::class, 'viewFileshow'])->name('resource.viewFileshow');
+
+// view fille resourece verrssion 2
+Route::get('/resource/{id}/view_filerun', [ResourceController::class, 'view_fileinCader'])->name('resource.view_fileinCader');
 
 
 

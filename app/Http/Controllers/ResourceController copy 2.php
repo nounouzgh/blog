@@ -209,14 +209,8 @@ public function viewFileshow($id)
         return response()->json(['message' => 'Resource not found'], 404);
     }
 
-// Specify the file path relative to the root directory of the storage disk
-$filePath = 'public/' . $resource->lien;
-// Get the file extension
-
-// Get the file's MIME type
-$mimeType = Storage::mimeType($filePath);
- 
-    return view('resource.view-file', compact('resource','mimeType'));
+    // Pass the resource to the blade view
+    return view('resource.view-file', compact('resource'));
 }
 
 
@@ -251,12 +245,11 @@ public function downloadFile($id)
         ]);
     }
     
-    public function view_fileinCader($id)
+    public function view_filerun($id)
     {
-       
         // Find the resource by its ID
         $resource = Resource::find($id);
-       
+    
         // Check if the resource exists
         if (!$resource) {
             return response()->json(['message' => 'Resource not found'], 404);
@@ -273,16 +266,13 @@ public function downloadFile($id)
         // Get the file's MIME type
         $mimeType = Storage::mimeType($filePath);
     
- 
         // Set the correct headers
         $headers = [
             'Content-Type' => $mimeType,
         ];
     
-    
         // Return the response with the correct headers
         return response()->file(storage_path('app/' . $filePath), $headers);
-       
     }
     
     
