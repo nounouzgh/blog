@@ -78,61 +78,9 @@
         </tbody>
      
     </table>
-    
-    <!-- Pagination Links -->
-    @if ($resources->hasPages())
-    <div class="pagination" style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
-        <ul class="pagination-list" style="display: inline-flex; list-style: none; padding: 0; margin: 0;">
-            {{-- Previous Page Link --}}
-            @if ($resources->onFirstPage())
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                    <span class="page-link">Previous</span>
-                </li>
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $resources->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">Previous</a>
-                </li>
-            @endif
 
-            {{-- Page Numbers --}}
-            @php
-                $start = max(1, $resources->currentPage() - 2);
-                $end = min($start + 4, $resources->lastPage());
-            @endphp
-            @for ($i = $start; $i <= $end; $i++)
-                <li class="page-item {{ $i == $resources->currentPage() ? 'active' : '' }}">
-                    <a class="page-link" href="{{ $resources->url($i) }}">{{ $i }}</a>
-                </li>
-            @endfor
-
-            {{-- Next Page Link --}}
-            @if ($resources->hasMorePages())
-                <li class="page-item">
-                    <a class="page-link" href="{{ $resources->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">Next</a>
-                </li>
-            @else
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span class="page-link">Next</span>
-                </li>
-            @endif
-
-            {{-- Last Page Link --}}
-            @if ($resources->currentPage() < $resources->lastPage() - 2)
-                <li class="page-item disabled" aria-disabled="true">
-                    <span class="page-link">...</span>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{ $resources->url($resources->lastPage()) }}">{{ $resources->lastPage() }}</a>
-                </li>
-            @endif
-        </ul>
-        
-        <div class="pagination-info" style="margin-top: 10px; text-align: center; margin-bottom: 20px;">
-            <p>Page {{ $resources->currentPage() }} of {{ $resources->lastPage() }} - Showing {{ $resources->firstItem() }} to {{ $resources->lastItem() }} of {{ $resources->total() }} results</p>
-        </div>
-    </div>
-    @endif
-
+      <!-- Pagination Links -->
+      <x-pagination :paginator="$resources" />
    
 </div>
 <style>

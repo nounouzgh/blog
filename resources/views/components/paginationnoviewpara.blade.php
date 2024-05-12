@@ -1,9 +1,12 @@
+<!-- resources/views/components/pagination.blade.php -->
+<!-- resources/views/components/pagination-links.blade.php -->
+
 @if ($paginator->hasPages())
     <div class="pagination" style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
         <ul class="pagination-list" style="display: inline-flex; list-style: none; padding: 0; margin: 0;">
             {{-- First Page Link --}}
             <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}">
-                <a class="page-link" href="{{ $paginator->url(1) }}{{ request()->has('view') ? '&view=' . request()->query('view') : '' }}">First</a>
+                <a class="page-link" href="{{ $paginator->url(1) }}">First</a>
             </li>
 
             {{-- Previous Page Link --}}
@@ -13,7 +16,7 @@
                 </li>
             @else
                 <li class="page-item">
-                    <a class="page-link" href="{{ $paginator->previousPageUrl() }}{{ request()->has('view') ? '&view=' . request()->query('view') : '' }}" rel="prev" aria-label="@lang('pagination.previous')">Previous</a>
+                    <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">Previous</a>
                 </li>
             @endif
 
@@ -24,14 +27,14 @@
             @endphp
             @for ($i = $start; $i <= $end; $i++)
                 <li class="page-item {{ $i == $paginator->currentPage() ? 'active' : '' }}">
-                    <a class="page-link" href="{{ $paginator->url($i) }}{{ request()->has('view') ? '&view=' . request()->query('view') : '' }}">{{ $i }}</a>
+                    <a class="page-link" href="{{ $paginator->url($i) }}">{{ $i }}</a>
                 </li>
             @endfor
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li class="page-item">
-                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}{{ request()->has('view') ? '&view=' . request()->query('view') : '' }}" rel="next" aria-label="@lang('pagination.next')">Next</a>
+                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">Next</a>
                 </li>
             @else
                 <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
@@ -41,7 +44,7 @@
 
             {{-- Last Page Link --}}
             <li class="page-item {{ $paginator->currentPage() == $paginator->lastPage() ? 'disabled' : '' }}">
-                <a class="page-link" href="{{ $paginator->url($paginator->lastPage()) }}{{ request()->has('view') ? '&view=' . request()->query('view') : '' }}">Last</a>
+                <a class="page-link" href="{{ $paginator->url($paginator->lastPage()) }}">Last</a>
             </li>
         </ul>
 
