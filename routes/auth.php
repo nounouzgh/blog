@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SignalController;
+use App\Http\Controllers\UsersController;
 
 // Routes for authenticated sessions (for other roles)
 Route::middleware('auth')->group(function () {
@@ -41,3 +43,23 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+
+
+
+// all that be need be auth user 
+Route::middleware('auth')->group(function () {
+
+    Route::get('/users', [UsersController::class, 'listUsers'])->name('users.List');
+    // Route to show the form for creating a new comment
+   // Route to delete a comment
+   Route::delete('/users/{idcompte}', [UsersController::class, 'delete'])->name('user.delete'); // Updated route
+    Route::put('/users/{idcompte}/block', [UsersController::class, 'block'])->name('user.block');
+    Route::put('/users/{idcompte}/activate', [UsersController::class, 'activate'])->name('user.activate');
+
+
+    Route::post('/signals', [SignalController::class, 'store'])->name('signals.store');
+    Route::get('/signals/user/{id}', [SignalController::class, 'show'])->name('signals.show');
+    
+});
+

@@ -408,7 +408,6 @@ transition: all 300ms ease; /*smouve affichage when i houver*/
 
 main .insights > div:not(.info-container):hover{
 box-sizing: none ;
-background: var(--color-light);
 }
 
 main .insights > div:not(.info-container) span{

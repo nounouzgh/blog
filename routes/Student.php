@@ -7,6 +7,9 @@ Route::middleware(['auth:compte', 'verified', 'student'])->group(function () {
     // Dashboard route
     Route::prefix('student')->name('student.')->group(function () {
         Route::view('dashboard', 'student.dashboard')->name('dashboard');
+
+        
+        
     });
 
     // Profile routes

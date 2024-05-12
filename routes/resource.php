@@ -7,9 +7,12 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\SignalResourceController;
 
-Route::post('/resource/dashboard', [ResourceController::class, 'store'])->name('resource.store');
+Route::post('/resource', [ResourceController::class, 'store'])->name('resource.store');
 // test controlle pase data and get it in blade test
-Route::get('/resource/dashboard', [ResourceController::class, 'index'])->name('resource.index');
+Route::get('/resource', [ResourceController::class, 'index'])->name('resource.index');
+
+//Route::get('/resources', [ResourceController::class, 'index'])->name('resources.index');
+
 
 Route::delete('/resources/{id}', [ResourceController::class, 'destroy'])->name('resource.destroy');
 
@@ -59,3 +62,5 @@ Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('c
 Route::get('/resources/{resourceId}/signal', [SignalResourceController::class, 'show'])->name('resource.signal.show');
 
 Route::post('/resources/{id}/signal', [SignalResourceController::class, 'store'])->name('resource.signal.store');
+
+

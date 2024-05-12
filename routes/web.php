@@ -27,23 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/updateProfileImage', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
+
 });
 
 
-// test controlle pase data and get it in blade test
-//Route::get('/test', [test::class, 'Userwithrole']);
-/*
-    Route::get('/lol', function () {
-        return view('1to call back if err.dashboard');
-    });*/
-Route::get('/lol', [test::class, 'index'])->name('Dashboard');
-// routes/web.php
-
-Route::get('/resources', [ResourceController::class, 'index'])->name('resources.index');
-
-
-
-Route::post('/updateProfileImage', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
 
 
 

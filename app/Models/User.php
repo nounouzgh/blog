@@ -60,4 +60,10 @@ class User extends Authenticatable
 {
     return $this->hasMany(Comment::class);
 }
+
+public function signal()
+{
+    return $this->hasMany(Signal::class);
+}
+
 }

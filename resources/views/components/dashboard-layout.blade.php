@@ -107,7 +107,7 @@
     <!-- JavaScript scripts -->
     <script src="{{ asset('assets/js/dasboardestyle.js') }}"></script>
 
-    NaveBaresytle
+ 
 </body>
 </html>
 

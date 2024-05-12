@@ -1,0 +1,22 @@
+
+.insights {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+   
+    width: 300%; /* Set width to 100% */
+    height: 100%; /* Set height to 100% */
+}
+
+.info-container {
+    width: 95%; /* Set width to 100% */
+    height: 95%; /* Set height to 100% */
+    margin-left: 5%;/* Move the container to the right */
+    max-width: none; /* Adjust max-width as needed */
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding and border in width and height calculations */
+}
