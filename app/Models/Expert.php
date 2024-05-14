@@ -1,16 +1,27 @@
 <?php
+// app/Models/Expert.php
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Expert extends Model // Update class name
+class Expert extends Model
 {
     use HasFactory;
-    protected $fillable = ['specialite'];
-    public function users()
+    
+    protected $fillable = [
+        'specialite',
+        'user_id'
+
+];
+
+public function users()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+    public function demandeInscription()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(DemandeInscription::class);
     }
 }

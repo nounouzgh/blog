@@ -1,0 +1,95 @@
+
+.info-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.info-container th,
+.info-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.info-container th {
+    background-color: #f2f2f2;
+}
+
+/* Style for buttons */
+.info-container .btn {
+    padding: 8px 12px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+    display: inline-block; /* Make buttons display inline */
+}
+
+.btn.block-btn {
+    background-color: #ffff00; /* Red color for block button */
+}
+
+.btn.activate-btn {
+    background-color: #28a745; /* Green color for activate button */
+}
+
+.btn.delete-btn {
+    background-color: #d31717; /* Gray color for delete button */
+}
+
+/* Style for the anchor tag buttons */
+.info-container a.btn {
+    color:black; /* Change text color to white */
+    text-decoration: none; /* Remove underline */
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #007bff; /* Blue color for anchor tag buttons */
+    transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+}
+
+
+/* Hover effect */
+.info-container a.btn:hover,
+.btn.delete-btn:hover,
+.btn.activate-btn:hover,
+.btn.block-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.info-container .btn:hover {
+    opacity: 0.9; /* Reduce opacity on hover */
+}
+
+/* Profile image styling */
+.profile-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Style for success message */
+.alert.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* Style for error message */
+.alert.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+

@@ -82,6 +82,12 @@ class RegisteredUserController extends Controller
                 'etat' => '0', // Set etat to 0 for expert accounts
                 // Add other fields here as necessary
             ]);   
+            // create demonde
+            
+            $user->expert->demandeInscription()->create($request->all());
+            // i do this becouse user use name and in inscreption is nom 
+            //not same names so nom emptu so i need full it manual
+            $user->expert->demandeInscription()->update(['nom' => $user->name]);
             return redirect()->route('login')->with('confirmation_message', 'Your account is waiting for confirmation. Please check your email for further instructions.');
         }
           elseif ($request->role === "admin") {

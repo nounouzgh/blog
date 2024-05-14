@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignalController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DemandeInscriptionController;
 
 // Routes for authenticated sessions (for other roles)
 Route::middleware('auth')->group(function () {
@@ -60,6 +61,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/signals', [SignalController::class, 'store'])->name('signals.store');
     Route::get('/signals/user/{id}', [SignalController::class, 'show'])->name('signals.show');
+    
+
+
+
+
+    Route::get('/demande-inscriptions', [DemandeInscriptionController::class, 'listDemandeInscription'])->name('demande-inscriptions.index');
+    Route::get('/demande-inscriptions/{id}', [DemandeInscriptionController::class, 'show'])->name('demande-inscriptions.show');
+    Route::delete('/demande-inscriptions/{id}', [DemandeInscriptionController::class, 'active_destroy'])->name('demande-inscriptions.destroy');
     
 });
 

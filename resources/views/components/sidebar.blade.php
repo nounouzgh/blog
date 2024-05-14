@@ -51,6 +51,7 @@
         <!-- Menu items for User -->
         <li><a href="{{ route($role.'.profile.edit') }}">Edit Profile</a></li>
         <li><a href="{{ route('users.List') }}">list Users</a></li>
+        <li><a href="{{ route('demande-inscriptions.index') }}">list demonde inscreption</a></li>
     </ul>
 </div>
 
