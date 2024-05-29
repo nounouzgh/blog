@@ -1,12 +1,6 @@
 <div class="topbar-right">
     <ul>
         <li>
-            <select class="header-lang-bx">
-                <option data-icon="flag flag-uk">English UK</option>
-                <option data-icon="flag flag-us">English US</option>
-            </select>
-        </li>
-        <li>
         @auth
         @if(session()->has('userRole')) 
           <p>User Role: {{ session('userRole') }}</p> {{-- create in  autent all role and visiteur role--}}

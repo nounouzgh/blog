@@ -14,4 +14,13 @@ class Teacher extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function reunions()
+    {
+        return $this->hasMany(Reunion::class, 'iduser_etd');
+    }
+
+    public function coursEnLignes()
+    {
+        return $this->hasMany(CoursEnLigne::class);
+    }
 }

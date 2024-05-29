@@ -43,4 +43,8 @@ require __DIR__.'/teacher.php';
 require __DIR__.'/expert.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/resource.php';
+require __DIR__.'/ads.php';
+require __DIR__.'/Reunion.php';
+require __DIR__.'/coure.php';
+require __DIR__.'/event.php';
 

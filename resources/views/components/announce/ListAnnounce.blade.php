@@ -40,7 +40,8 @@
                 <td>{{ $resource->user->role->name }}</td>
                 <td>{{ $resource->name }}</td>
                 <td>{{ $resource->description }}</td>
-                <td>{{ $resource->lien }}</td>
+                <td>{{ basename($resource->lien) }}</td>
+            
                 <td>
                     <div class="btn-group d-flex" role="group" style="white-space: nowrap;">
                         <!-- Delete Resource Button -->

@@ -24,4 +24,9 @@ public function users()
     {
         return $this->hasOne(DemandeInscription::class);
     }
+
+    public function evenementPayents()
+    {
+        return $this->hasMany(EvenementPayent::class, 'expere_id');
+    }
 }

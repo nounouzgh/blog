@@ -21,6 +21,10 @@
                 <span class="material-symbols-outlined">person</span>
                 <h3>Users</h3>
             </a>
+            <a href="#" data-menu-id="pubandads-menu">
+                <span class="material-symbols-outlined">hail</span>
+                <h3>pubandads</h3>
+            </a>
             <a href="#" data-menu-id="resource-menu">
                 <span class="material-symbols-outlined">library_books</span>
                 <h3>Resources</h3>
@@ -34,9 +38,10 @@
                 <h3>Event</h3>
                 <span class="message-count">26</span> 
             </a>
-            <a href="#" data-menu-id="meeting-menu">
+            <a href="#" id="event-link" data-menu-id="meeting-menu">
                 <span class="material-symbols-outlined">groups</span>
                 <h3>Meeting</h3>
+                <span class="message-count" id="invitation-count"></span>
             </a>
             <a href="#">
                 <span class="material-symbols-outlined">logout</span>
@@ -55,6 +60,16 @@
     </ul>
 </div>
 
+<div class="menu" id="pubandads-menu">
+    <ul>
+            <!-- Menu items for Resources -->
+            <li><a href="{{ route('ads.create') }}">Create Ads</a></li>
+            <li><a href="{{ route('ads.list') }}" >My List Ads</a></li>
+            <li><a href="{{ route('ads.demandes_pub') }}" >List demande Pub</a></li>
+            
+          
+    </ul>
+</div>
 <div class="menu" id="resource-menu">
     <ul>
         <!-- Menu items for Resources -->
@@ -68,9 +83,9 @@
 <div class="menu" id="course-menu">
     <ul>
         <!-- Menu items for Course Online -->
-        <li><a href="#">Programming</a></li>
-        <li><a href="#">Design</a></li>
-        <li><a href="#">Marketing</a></li>
+        <li><a href="{{ route('cours-en-ligne.create') }}">Create coure</a></li>
+        <li><a href="{{ route('cours-en-ligne.list') }}">list Coure</a></li>
+   
     </ul>
 </div>
 
@@ -85,9 +100,10 @@
 <div class="menu" id="meeting-menu">
     <ul>
         <!-- Menu items for Meetings -->
-        <li><a href="#">Schedule</a></li>
-        <li><a href="#">Agenda</a></li>
-        <li><a href="#">Participants</a></li>
+        <li><a <a href="{{ route('reunions.create') }}">create</a></li>
+        <li><a <a href="{{ route('reunions.invitation') }}">List Invitation</a></li>
+        <li><a <a href="{{ route('reunions.list') }}">List Reunions</a></li>
+        
     </ul>
 </div>
 
@@ -95,3 +111,13 @@
     
     <script src="{{ asset('assets/js/sidbarehidandshowresource.js') }}"></script>
     <script src="{{ asset('assets/js/sidebaremenu.js') }}"></script>
+
+    <script>
+        // Fetch the number of invitations for done reunions using AJAX
+        fetch('{{ route("get-number-invite-reunion") }}')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('invitation-count').innerText = data;
+            })
+            .catch(error => console.error('Error fetching invitation count:', error));
+    </script>

@@ -67,4 +67,30 @@ public function signal()
     return $this->hasMany(Signal::class);
 }
 
+public function ads()
+{
+    return $this->hasMany(Ads::class, 'user_id');
+}
+
+public function competences()
+{
+    return $this->hasMany(Competence::class, 'iduser');
+}
+
+public function participations()
+{
+    return $this->hasMany(Particeperreunion::class);
+}
+
+public function participationsEvenementPayent()
+{
+    return $this->belongsToMany(EvenementPayent::class, 'ParticipeEvent', 'user_id', 'evenement_payent_id');
+}
+
+public function EvenementPayent()
+{
+    return $this->belongsToMany(EvenementPayent::class, 'participe_event', 'user_id', 'evenement_payent_id');
+}
+
+
 }

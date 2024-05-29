@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\PasswordController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignalController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DemandeInscriptionController;
+
+   
+use App\Http\Controllers\AdsController;
 
 // Routes for authenticated sessions (for other roles)
 Route::middleware('auth')->group(function () {
@@ -70,5 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/demande-inscriptions/{id}', [DemandeInscriptionController::class, 'show'])->name('demande-inscriptions.show');
     Route::delete('/demande-inscriptions/{id}', [DemandeInscriptionController::class, 'active_destroy'])->name('demande-inscriptions.destroy');
     
+
+
 });
 

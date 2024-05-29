@@ -63,7 +63,22 @@ public function index()
         if (!$resource) {
             return response()->json(['message' => 'Resource not found'], 404);
         }
-
+      
+ 
+       
+             // Delete  derctory that will have file 
+        if ($resource->lien) {
+            // sup file
+            Storage::disk('public')->delete($resource->lien);
+            // get folder of this file
+            $directory = dirname($resource->lien);
+               if (Storage::disk('public')->exists($directory)) {
+                $files = Storage::disk('public')->files($directory);
+                if (empty($files)) {
+                    Storage::disk('public')->deleteDirectory($directory);
+                }
+            }
+        }
         // Delete the resource
         $resource->delete();
 
@@ -151,9 +166,12 @@ public function edit($id)
     // Process file upload if present
     $filePath = 'default_file.jpg'; // Default file path if no file is uploaded
     if ($request->hasFile('file')) {
+        
         $file = $request->file('file');
         $fileName = $file->getClientOriginalName(); // Get the original file name
-        $filePath = $file->storeAs('file', $fileName, 'public'); // Store the file with its original name
+        $uniqueFilename = uniqid() . '/' . $fileName;
+        $filePath = $file->storeAs('file', $uniqueFilename, 'public'); // Store the file with its original name
+   
     }
 
     // Create a new resource instance associated with the authenticated user
