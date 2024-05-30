@@ -61,7 +61,14 @@
                         <a href="{{ route('resource.signal.show', ['resourceId' => $resource->id]) }}" class="btn btn-primary btn-sm btn-3d"> <span class="material-symbols-outlined">report</span>
                             <span class="message-count">{{ $resource->nbr_signal }}</span>          
                         </a>
-                  
+                        @if (Auth::user()->role->name == 'admin')
+                        <a><form action="{{ route('resource.destroy', $resource->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm btn-3d mr-1"><span class="material-symbols-outlined">delete</span></button>
+                        </form> </a>
+                        @endif
+
                     </div>
                 </td>
                 <td colspan="3"></td>

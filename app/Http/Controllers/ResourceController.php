@@ -261,7 +261,7 @@ public function downloadFile($id)
 
         // Get the file's MIME type
         $mimeType = Storage::mimeType($filePath);
-
+    //    dd($mimeType);
         // Return the file as a downloadable response
         return response()->download(storage_path('app/' . $filePath), basename($filePath), [
             'Content-Type' => $mimeType,

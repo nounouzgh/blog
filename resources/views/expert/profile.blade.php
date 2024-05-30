@@ -1,21 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Expert Information</title>
-    <!-- Add CSS for success message -->
-    <style>
-        .success-message {
-            color: green;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Show Expert Information</h1>
-    <h2>Expert Details:</h2>
+<x-dashboard-layout>
+    <!-- Main content -->
+    <x-slot name="contenu">
+        <div class="info-container">
+      
+            <h2>Student Details:</h2>
 
+        <!-- Overlay container -->
+        <div id="overlay">
+        <!-- Image list container -->
+        <div id="imageListContainer">
+            <!-- Background image -->
+            <div id="imageListBackground"></div>
+            <!-- Image list -->
+            <div id="imageList" style="display: none;"></div>
+        </div>
+        </div>
+
+        <!-- Profile list -->
+        <ul class="profile-list">
+        <!-- Profile item -->
+        <li class="profile-item">
+            <h3>Profile 1</h3>
+            <!-- Profile image container -->
+            <div class="profile-image-container">
+      <!-- Wrap the image and the button inside a form element -->
+        <form id="profileImageForm" action="{{ route('updateProfileImage') }}" method="POST">
+            @csrf
+            <!-- Set default profile image path here -->
+            @if($user->image)
+            <img class="profile-image" src="{{ asset($user->image) }}" alt="Profile Image" onclick="toggleImageList()">
+             @else
+             <img class="profile-image" src="{{ asset('storage/profile/man/face.jpg') }}" alt="Profile Image" onclick="toggleImageList()">
+            @endif
+             <!-- Hidden input to store the image source -->
+            <input type="hidden" class="profile-image" name="profile_image_src" value="{{ asset('storage/profile/man/face.jpg') }}">
+            <!-- Edit button -->
+            <button type="submit">Update Image</button>
+        </form>
+
+            @if(session('success'))
+                <div class="alert alert-info">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </li>
+</ul>
+
+    <!-- Display current information -->
+    <div class="user-info">
     <!-- Display current information -->
     <p>Name: {{ $user->name }}</p>
     <p>prenom: {{ $user->prenom }}</p>
@@ -59,18 +91,15 @@
         <p class="success-message">{{ session('success') }}</p>
     @endif
 
-    <script>
-        function toggleEditForm() {
-            var form = document.getElementById("editForm");
-            var button = document.querySelector("button");
-            if (form.style.display === "none") {
-                form.style.display = "block";
-                button.textContent = "Cancel";
-            } else {
-                form.style.display = "none";
-                button.textContent = "Edit";
-            }
-        }
-    </script>
-</body>
-</html>
+</div> 
+</x-slot>
+
+
+
+</x-dashboard-layout>
+
+
+    
+<link rel="stylesheet" href="{{ asset('assets/css/pageprofile.css') }}">
+<script src="{{ asset('assets/js/menuforprofileimage.js') }}"></script>
+
