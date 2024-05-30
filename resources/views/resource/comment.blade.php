@@ -154,13 +154,15 @@
                                 </div>
                                 <strong>User: {{ $comment->user->name }}</strong><br>
                                 {{ $comment->text }}
-                                @if($comment->user->id === auth()->user()->id)
+                                @if(auth()->user()->role->name == "admin")
                                 <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-delete">Delete</button>
                                 </form>
                             @endif
+                            
+                      
                             </div>
                         @endforeach
 

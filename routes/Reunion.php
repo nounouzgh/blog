@@ -11,6 +11,9 @@ Route::get('/reunions/create', function () {
 });
 */
 
+
+Route::middleware('auth')->group(function () {
+
 Route::get('/reunions/create', [ReunionController::class, 'create'])->name('reunions.create');
 
 Route::post('/reunions', [ReunionController::class, 'store'])->name('reunions.store');
@@ -35,3 +38,5 @@ Route::delete('/reunions/{reunion}', [ReunionController::class, 'destroy'])->nam
 
 // In web.php or routes file
 Route::post('/reunion/{idreunion}/participate', [ReunionController::class, 'participate'])->name('reunions.participate');
+
+});

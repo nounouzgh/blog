@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit968f73bcf5520ee401d641d0d79555ec
+class ComposerStaticInitf423938962dd5d1826ced64734473b35
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -385,8 +385,8 @@ class ComposerStaticInit968f73bcf5520ee401d641d0d79555ec
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -648,6 +648,9 @@ class ComposerStaticInit968f73bcf5520ee401d641d0d79555ec
         'App\\Models\\DemandePub' => __DIR__ . '/../..' . '/app/Models/DemandePub.php',
         'App\\Models\\EvenementPayent' => __DIR__ . '/../..' . '/app/Models/EvenementPayent.php',
         'App\\Models\\Expert' => __DIR__ . '/../..' . '/app/Models/Expert.php',
+        'App\\Models\\Feedback' => __DIR__ . '/../..' . '/app/Models/Feedback.php',
+        'App\\Models\\HelpRequest' => __DIR__ . '/../..' . '/app/Models/HelpRequest.php',
+        'App\\Models\\InterestPoint' => __DIR__ . '/../..' . '/app/Models/InterestPoint.php',
         'App\\Models\\Invitation' => __DIR__ . '/../..' . '/app/Models/Invitation.php',
         'App\\Models\\JustificationCompitence' => __DIR__ . '/../..' . '/app/Models/JustificationCompitence.php',
         'App\\Models\\Owners' => __DIR__ . '/../..' . '/app/Models/Owners.php',
@@ -659,6 +662,7 @@ class ComposerStaticInit968f73bcf5520ee401d641d0d79555ec
         'App\\Models\\Reunion' => __DIR__ . '/../..' . '/app/Models/Reunion.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\Signal' => __DIR__ . '/../..' . '/app/Models/Signal.php',
+        'App\\Models\\Skill' => __DIR__ . '/../..' . '/app/Models/Skill.php',
         'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',
         'App\\Models\\Teacher' => __DIR__ . '/../..' . '/app/Models/Teacher.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -7219,9 +7223,9 @@ class ComposerStaticInit968f73bcf5520ee401d641d0d79555ec
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit968f73bcf5520ee401d641d0d79555ec::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit968f73bcf5520ee401d641d0d79555ec::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit968f73bcf5520ee401d641d0d79555ec::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf423938962dd5d1826ced64734473b35::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf423938962dd5d1826ced64734473b35::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitf423938962dd5d1826ced64734473b35::$classMap;
 
         }, null, ClassLoader::class);
     }

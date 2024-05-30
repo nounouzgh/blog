@@ -179,6 +179,8 @@
 
         <div class="insights">
             <div class="info-container">
+ 
+                @if(auth()->user()->role->name=="admin")
                 <div class="panel panel-default">
                     <div class="panel-heading">Signals</div>
                     <div class="panel-body">
@@ -197,19 +199,10 @@
                                 <!-- You can add more details if needed -->
                             </div>
                         @endforeach
+                    
 
-                        <!-- Add signal form -->
-                        <div class="well add-signal-form">
-                            <h4>Send Signal</h4>
-                            <form method="POST" action="{{ route('resource.signal.store', ['id' => $resource->id]) }}">
-                                @csrf
-                                <div>
-                                    <label for="cause">Cause:</label>
-                                    <input type="text" id="cause" name="cause" required>
-                                </div>
-                                <button type="submit">Send Signal</button>
-                            </form>
-                        </div>
+
+
 
                         <!-- Pagination Links -->
                         @if ($signals->hasPages())
@@ -265,6 +258,25 @@
                             </div>
                         @endif
 
+                        @endif
+
+
+
+                        
+                        @if(auth()->user()->role->name!="admin")
+                        <!-- Add signal form -->
+                        <div class="well add-signal-form">
+                            <h4>Send Signal</h4>
+                            <form method="POST" action="{{ route('resource.signal.store', ['id' => $resource->id]) }}">
+                                @csrf
+                                <div>
+                                    <label for="cause">Cause:</label>
+                                    <input type="text" id="cause" name="cause" required>
+                                </div>
+                                <button type="submit">Send Signal</button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

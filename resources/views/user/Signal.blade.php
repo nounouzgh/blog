@@ -3,6 +3,8 @@
     <x-slot name="contenu">
         <!-- Existing signals -->
         <div class="info-container">
+            
+            @if(auth()->user()->role->name=="admin")
             <div class="panel panel-default">
                 <div class="panel-heading">Signals for {{ $userreport->name }}</div>
                 <div class="panel-body">
@@ -37,7 +39,9 @@
             
             <!-- Pagination Links -->
             <x-pagination :paginator="$signals" />
-
+            @endif
+            
+            @if(auth()->user()->role->name!="admin")
             <!-- Add new signal form -->
             <div class="panel panel-default">
                 <div class="panel-heading">Add New Signal</div>
@@ -64,6 +68,7 @@
                     </form>
                 </div>
             </div>
+            @endif
         </div>
     </x-slot>
 </x-dashboard-layout>

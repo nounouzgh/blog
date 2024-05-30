@@ -27,27 +27,32 @@
                                 <td>{{ $reunion->date }}</td>
                                 <td>{{ $reunion->duree }}</td>
                                 <td>
+                                    @if($teacher && $reunion->teacher && $teacher->id == $reunion->teacher->id)
+                                 
                                     <div class="btn-group d-flex" role="group" style="white-space: nowrap;">
                                         <a href="{{ route('reunion.inviter', ['reunionId' => $reunion->id]) }}">
                                             <button class="btn btn-danger btn-sm btn-3d mr-1"><span class="material-symbols-outlined">
                                                 add_box
                                                 </span></button>
                                         </a>
-                              
-                                     
+
+                                        
+                                    @endif  
+                             
                                         <a><form action="{{ route('reunions.participate', $reunion->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to Join this reunion?');">
                                             @csrf
                                         
                                             <button type="submit" class="btn btn-danger btn-sm btn-3d mr-1">  <span class="material-symbols-outlined">library_add</span></button>
                                         </form> </a>
-
-
+                          
+                                        @if($teacher && $reunion->teacher && $teacher->id == $reunion->teacher->id)
+                                     
                                         <a><form action="{{ route('reunions.destroy', $reunion->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this reunion?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm btn-3d mr-1"><span class="material-symbols-outlined">delete</span></button>
                                         </form> </a>
-                                       
+                                        @endif
                                     </div>
                                 </td>
                             </tr>

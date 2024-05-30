@@ -156,44 +156,46 @@ public function List_demande_pub()
 
 
 
-    public function delete($id)
-    {
-        $ad = Ads::find($id);
+public function delete($id)
+{
+    $ad = Ads::find($id);
 
-        if (!$ad) {
-            return back()->with(['error' => 'Ad not found'], 404);
-        }
+    if (!$ad) {
+        return back()->with(['error' => 'Ad not found'], 404);
+    }
 
-        // Delete associated DemandePub
+    // Delete associated DemandePub
     if ($ad->demandePub) {
+        // First, delete any associated piece joints
+        $ad->demandePub->pieceJoints()->delete();
+        // Then, delete the demandePub itself
         $ad->demandePub->delete();
     }
-        // Delete associated files
-        if ($ad->dien) {
-            Storage::disk('public')->delete($ad->dien);
 
-            if ($ad->lien) {
-                // sup file
-                Storage::disk('public')->delete($ad->lien);
-                // get folder of this file
-                $directory = dirname($ad->lien);
-                   if (Storage::disk('public')->exists($directory)) {
-                    $files = Storage::disk('public')->files($directory);
-                    if (empty($files)) {
-                        Storage::disk('public')->deleteDirectory($directory);
-                    }
+    // Delete associated files
+    if ($ad->dien) {
+        Storage::disk('public')->delete($ad->dien);
+
+        if ($ad->lien) {
+            // Delete file
+            Storage::disk('public')->delete($ad->lien);
+            // Get folder of this file
+            $directory = dirname($ad->lien);
+            if (Storage::disk('public')->exists($directory)) {
+                $files = Storage::disk('public')->files($directory);
+                if (empty($files)) {
+                    Storage::disk('public')->deleteDirectory($directory);
                 }
             }
-
         }
-
-        // Delete the ad
-        $ad->delete();
-        
-
-     
-        return back()->with(['success' => 'Ad deleted successfully'], 200);
     }
+
+    // Delete the ad
+    $ad->delete();
+
+    return back()->with(['success' => 'Ad deleted successfully'], 200);
+}
+
 
     public function accept($id)
     {
@@ -292,7 +294,6 @@ public function List_demande_pub()
    
 public function view_fileinCader($id)
 {
-   
     // Find the resource by its ID
     $PieceJoint = PieceJoint::findOrFail($id);
 
@@ -312,16 +313,13 @@ public function view_fileinCader($id)
     // Get the file's MIME type
     $mimeType = Storage::mimeType($filePath);
 
-
     // Set the correct headers
     $headers = [
         'Content-Type' => $mimeType,
     ];
 
-
     // Return the response with the correct headers
     return response()->file(storage_path('app/' . $filePath), $headers);
-   
 }
 
 

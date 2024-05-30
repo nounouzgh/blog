@@ -23,11 +23,13 @@
                 <span class="material-symbols-outlined">person</span>
                 <h3>Users</h3>
             </a>
-            
+            @if ($role == 'guest' || $role == 'admin')
             <a href="#" data-menu-id="pubandads-menu">
                 <span class="material-symbols-outlined">hail</span>
                 <h3>pubandads</h3>
             </a>
+            
+            @endif
             @if ($role != 'guest')
             <a href="#" data-menu-id="resource-menu">
                 <span class="material-symbols-outlined">library_books</span>
@@ -44,13 +46,14 @@
             <a href="#" id="event-link" data-menu-id="event-menu">
                 <span class="material-symbols-outlined">event</span>
                 <h3>Event</h3>
-                <span class="message-count">26</span> 
+        
             </a>
             @endif
             @endif
             @if ($role != 'expert')
             @if ($role != 'admin')
             @if ($role != 'guest')
+
             <a href="#" id="event-link" data-menu-id="meeting-menu">
                 <span class="material-symbols-outlined">groups</span>
                 <h3>Meeting</h3>
@@ -99,7 +102,8 @@
 <div class="menu" id="resource-menu">
     <ul>
         <!-- Menu items for Resources -->
-        @if ($role != 'admin')
+        @if ($role == 'teacher')
+        
         <li><a href="{{ route('resource.index', ['view' => 'my']) }}" data-resource-view="my" id="my-resource-link">My Resource</a></li>
         @endif
         <li><a href="{{ route('resource.index', ['view' => 'all']) }}" data-resource-view="all" id="all-resource-link">All Resource</a></li>
@@ -112,18 +116,24 @@
     <ul>
         <!-- Menu items for Course Online -->
         @if ($role != 'admin')
+         @if ($role == 'teacher')
         <li><a href="{{ route('cours-en-ligne.create') }}">Create coure</a></li>
+        @endif
         @endif
         <li><a href="{{ route('cours-en-ligne.list') }}">list Coure</a></li>
    
     </ul>
 </div>
 
+
 <div class="menu" id="event-menu">
     <ul>
-        <!-- Menu items for Events -->
-        <li><a href="#">Upcoming</a></li>
-        <li><a href="#">Past</a></li>
+        @if ($role == 'expert')
+        <li><a <a href="{{ route('events.create') }}">create</a></li>
+        @endif
+
+        <li><a <a href="{{ route('events.list') }}">UncommingEvent</a></li>
+
     </ul>
 </div>
 
@@ -131,7 +141,9 @@
     <ul>
         <!-- Menu items for Meetings -->
         @if ($role != 'admin')
+        @if ($role == 'teacher')
         <li><a <a href="{{ route('reunions.create') }}">create</a></li>
+        @endif
         <li><a <a href="{{ route('reunions.invitation') }}">List Invitation</a></li>
         @endif
         <li><a <a href="{{ route('reunions.list') }}">List Reunions</a></li>

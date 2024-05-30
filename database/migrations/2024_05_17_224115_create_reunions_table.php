@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('duree');
             $table->string('specialite');
             $table->unsignedBigInteger('iduser_etd')->nullable();
-            $table->foreign('iduser_etd')->references('id')->on('students');
+            $table->foreign('iduser_etd')->references('id')->on('teachers');
             $table->timestamps();
         });
     }

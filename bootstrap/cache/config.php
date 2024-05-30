@@ -785,11 +785,6 @@
       0 => 'C:\\xampp\\htdocs\\blog\\resources\\views',
     ),
     'compiled' => 'C:\\xampp\\htdocs\\blog\\storage\\framework\\views',
-    'components' => 
-    array (
-      'top-bar' => 'components.top-bar-log-reg-guest',
-      'foot-bar' => 'components.foot-bar',
-    ),
   ),
   'fortify' => 
   array (

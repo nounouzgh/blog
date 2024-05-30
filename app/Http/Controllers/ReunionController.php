@@ -51,21 +51,23 @@ class ReunionController extends Controller
         $user = Auth::user();
 
         // Get the teacher related to the authenticated user
-        $Student = $user->student;
+        $teacher = $user->teacher;
 
         // Create a new Reunion instance with validated data
         $reunion = new Reunion($validatedData);
 
         // Set the iduser_etd attribute to the teacher's id
-        $reunion->iduser_etd = $Student->id;
+        $reunion->iduser_etd = $teacher->id;
 
         // Save the new reunion to the database
         $reunion->save();
 
         // Return a response, for example, the newly created reunion or a success message
-    //    return response()->json(['message' => 'Reunion created successfully', 'reunion' => $reunion], 201);
+    //return response()->json(['message' => 'Reunion created successfully', 'reunion' => $reunion], 201);
    // Redirect back to the same page after processing the form
-   return redirect()->back()->with('message', 'Reunion created successfully!');    
+
+   return view('reunions.invite', compact('reunion'));
+ //  return redirect()->back()->with('message', 'Reunion created successfully!');    
 }
 
 
@@ -194,13 +196,12 @@ public function listReunion()
     ->orderBy('date', 'desc')
     ->paginate(3);
 
-    $oldreunions = Reunion::whereDate('date', '<', $currentDate)
-    ->orderBy('date', 'desc')
-    ->paginate(3);
 
+    $teacher = Auth::user()->teacher;
+    //dd($teacher);
     return view('reunions.listReunion', [
         'newreunions' => $newreunions,
-        'oldreunions' => $oldreunions,
+        'teacher' => $teacher,
     ]);
 }
 

@@ -42,18 +42,25 @@
                                 @endif
                             </td>
                             <td>{{ $user->name }}</td>
-                            @if($user->compte)
+                            @if ($user->compte)
                             <td>{{ $user->compte->email }}</td>
+                            @else
+                            <td>Guest@hotmail.com</td>
                             @endif
                             <td>{{ $user->role->name }}</td>
-                            @if($user->compte)
+                            @if ($user->compte)
                             <td>{{ $user->compte->etat == 1 ? 'Active' : 'Inactive' }}</td>
+                            @else
+                                <td>Inactive</td>
                             @endif
                             <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td> <!-- Displaying created_at timestamp -->
+                        
+                        <td>
                             @if($user->compte)
+
                             @if(auth()->user()->role->name!="guest")
-                            <td>
-                             
+
+                            @if(auth()->user()->role->name=="admin")
                                 @if($user->compte->etat == 1)
                                    
                                     <form id="blockForm" action="{{ route('user.block', ['idcompte' => $user->compte->id]) }}" method="POST">
@@ -73,15 +80,19 @@
                                     @method('DELETE')
                                     <button class="btn delete-btn" type="submit">Delete</button>
                                 </form>
+                                @endif
                                 <a href="{{ route('signals.show', ['id' => $user->id]) }}" class="btn btn-primary btn-sm btn-3d ">
                                     <span class="material-symbols-outlined">report</span>
                                     <span class="message-count">{{ $user->signal->count() }}</span>
                                 </a>
                            
-                            </td>
-                            @endif
-                            @endif
+                                   
+                                @endif
+                                @endif
+                        </td>
+               
                        </tr>
+                 
                     @endforeach
                 <tr></tr>
                 </tbody>

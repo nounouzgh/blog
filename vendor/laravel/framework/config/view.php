@@ -32,8 +32,5 @@ return [
         'VIEW_COMPILED_PATH',
         realpath(storage_path('framework/views'))
     ),
-    'components' => [
-        'top-bar' => 'components.top-bar-log-reg-guest',
-        'foot-bar' => 'components.foot-bar',
-    ],
+
 ];

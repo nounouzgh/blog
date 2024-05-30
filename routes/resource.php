@@ -7,6 +7,8 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\SignalResourceController;
 
+
+Route::middleware('auth')->group(function () {
 Route::post('/resource', [ResourceController::class, 'store'])->name('resource.store');
 // test controlle pase data and get it in blade test
 Route::get('/resource', [ResourceController::class, 'index'])->name('resource.index');
@@ -64,3 +66,4 @@ Route::get('/resources/{resourceId}/signal', [SignalResourceController::class, '
 Route::post('/resources/{id}/signal', [SignalResourceController::class, 'store'])->name('resource.signal.store');
 
 
+});

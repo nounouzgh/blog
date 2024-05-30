@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdsController;
 
 
+Route::middleware('auth')->group(function () {
 Route::get('/ads/create', [AdsController::class, 'create'])->name('ads.create');
 Route::post('/ads/store', [AdsController::class, 'store'])->name('ads.store');
 Route::get('/ads/list', [AdsController::class, 'listAds'])->name('ads.list');
@@ -27,5 +28,7 @@ Route::get('/ads/{id}', [AdsController::class, 'show'])->name('ads.show');
 
 // view fille resourece verrssion 
 Route::get('/ads/{id}/view_filerun', [AdsController::class, 'view_fileinCader'])->name('ads.view_fileinCader');
+
+});
 
 
