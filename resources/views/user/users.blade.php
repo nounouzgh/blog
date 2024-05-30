@@ -42,13 +42,20 @@
                                 @endif
                             </td>
                             <td>{{ $user->name }}</td>
+                            @if($user->compte)
                             <td>{{ $user->compte->email }}</td>
+                            @endif
                             <td>{{ $user->role->name }}</td>
+                            @if($user->compte)
                             <td>{{ $user->compte->etat == 1 ? 'Active' : 'Inactive' }}</td>
+                            @endif
                             <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td> <!-- Displaying created_at timestamp -->
-
+                            @if($user->compte)
+                            @if(auth()->user()->role->name!="guest")
                             <td>
+                             
                                 @if($user->compte->etat == 1)
+                                   
                                     <form id="blockForm" action="{{ route('user.block', ['idcompte' => $user->compte->id]) }}" method="POST">
                                         @csrf
                                         @method('PUT')
@@ -72,6 +79,8 @@
                                 </a>
                            
                             </td>
+                            @endif
+                            @endif
                        </tr>
                     @endforeach
                 <tr></tr>

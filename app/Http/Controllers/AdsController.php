@@ -52,11 +52,19 @@ class AdsController extends Controller
         
 
         // Create or find the owner
+
+        if($user->compte) {
         $owner = Owners::firstOrCreate(
             ['email' => $user->compte->email],
             ['name' => $user->name, 'prenom' => $user->prenom, 'tel' => $request->tel]
         );
-            
+    }else{
+
+        $owner = Owners::firstOrCreate(
+            ['email' => "guest"],
+            ['name' => $user->name, 'prenom' => $user->prenom, 'tel' => $request->tel]
+        );
+    }
         // Create ad
         $ad = Ads::create([
             'description' => $request->description,
@@ -69,6 +77,7 @@ class AdsController extends Controller
         ]);
         //'user_id' =>Auth::user()->id,
         // Create demande pub
+        if($user->compte) {
         $demandePub = DemandePub::create([
             'nom' => $user->name,
             'tel' => $request->tel,
@@ -78,6 +87,18 @@ class AdsController extends Controller
             'ads_id' => $ad->id,
           
         ]);
+    }  else{
+        
+        $demandePub = DemandePub::create([
+            'nom' => $user->name,
+            'tel' => $request->tel,
+            'email' => "guest",
+            'description' => $request->description,
+            'specialite' => $request->specialite,
+            'ads_id' => $ad->id,
+          
+        ]);
+        }
     
         // Create justification compitences
         if ($request->has('justification_compitences')) {

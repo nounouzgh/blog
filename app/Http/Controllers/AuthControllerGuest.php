@@ -50,9 +50,10 @@ public function register(Request $request)
     $request->session()->regenerate();
     $userRole = $this->userService->getRole($user->id);
    
-    session(['userRole' => $userRole]);
+    session(['userRole' => $request->role]);
+    return redirect()->route('guest.dashboard')->with('user', $user);; // Redirect to the guest dashboard
 
-    return redirect()->route('guest.dashboard'); // Redirect to the guest dashboard
+       
 }
 
 

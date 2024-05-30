@@ -41,37 +41,35 @@
                 </thead>
                 <tbody>
                     @forelse ($AdsAndDemandePub as $ad)
-                        <tr class="ad-row" data-status="{{ $ad->demandePub->accepted ? 'accepted' : 'waiting' }}">
-                            <td>{{ $ad->demandePub->nom }}</td>
-                            <td>{{ $ad->owner->email }}</td>
-                            <td>{{ $ad->owner->tel }}</td>
-                            <td>{{ $ad->description }}</td>
-                            <td>{{ $ad->demandePub->accepted ? 'Accepted' : 'Waiting' }}</td>
-                            <td>
-                                <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="btn btn-secondary btn-sm btn-3d mr-1">
-                                    <span class="material-symbols-outlined">visibility</span>
-                                </a>
-                               
-                                <form action="{{ route('ads.delete', $ad->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" style="color: white; background-color: red;">Delete</button>
-                                </form>
-                                @if (auth()->user()->role->name === 'admin' && !$ad->demandePub->accepted)
-                                <form action="{{ route('ads.accept', $ad->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success" style="color: white; background-color: green;">Accept</button>
-                                </form>
-                                @endif
-
-
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8">No ads found.</td>
-                        </tr>
-                    @endforelse
+                    <tr class="ad-row" data-status="{{ optional($ad->demandePub)->accepted ? 'accepted' : 'waiting' }}">
+                        <td>{{ optional($ad->demandePub)->nom }}</td>
+                        <td>{{ optional($ad->owner)->email }}</td>
+                        <td>{{ optional($ad->owner)->tel }}</td>
+                        <td>{{ $ad->description }}</td>
+                        <td>{{ optional($ad->demandePub)->accepted ? 'Accepted' : 'Waiting' }}</td>
+                        <td>
+                            <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="btn btn-secondary btn-sm btn-3d mr-1">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </a>
+                           
+                            <form action="{{ route('ads.delete', $ad->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" style="color: white; background-color: red;">Delete</button>
+                            </form>
+                            @if (auth()->user()->role->name === 'admin' && optional($ad->demandePub)->accepted !== true)
+                            <form action="{{ route('ads.accept', $ad->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success" style="color: white; background-color: green;">Accept</button>
+                            </form>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No ads found.</td>
+                    </tr>
+                @endforelse
                     <tr> </tr>
                 </tbody>
         

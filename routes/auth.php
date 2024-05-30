@@ -64,14 +64,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/signals/user/{id}', [SignalController::class, 'show'])->name('signals.show');
     
 
-
-
-
     Route::get('/demande-inscriptions', [DemandeInscriptionController::class, 'listDemandeInscription'])->name('demande-inscriptions.index');
     Route::get('/demande-inscriptions/{id}', [DemandeInscriptionController::class, 'show'])->name('demande-inscriptions.show');
     Route::delete('/demande-inscriptions/{id}', [DemandeInscriptionController::class, 'active_destroy'])->name('demande-inscriptions.destroy');
     
-
-
 });
 

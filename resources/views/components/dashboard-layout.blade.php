@@ -21,8 +21,11 @@
 <body>
     <div class="container">
         @php
-        $user = Auth::guard('compte')->user()->user;
-        @endphp
+          
+            $authUser = Auth::guard('compte')->user();
+            $user = $authUser ? $authUser->user : Auth::user();
+
+@endphp
         <!-- Sidebar -->
         <x-sidebar role="{{ $user->role->name }}"/>
         

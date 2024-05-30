@@ -23,12 +23,12 @@
                 <span class="material-symbols-outlined">person</span>
                 <h3>Users</h3>
             </a>
-        
+            
             <a href="#" data-menu-id="pubandads-menu">
                 <span class="material-symbols-outlined">hail</span>
                 <h3>pubandads</h3>
             </a>
-
+            @if ($role != 'guest')
             <a href="#" data-menu-id="resource-menu">
                 <span class="material-symbols-outlined">library_books</span>
                 <h3>Resources</h3>
@@ -38,20 +38,25 @@
                 <h3>Course Online</h3>
             </a>
             @endif
+            @endif
             @if ($role == 'expert')
+            @if ($role != 'guest')
             <a href="#" id="event-link" data-menu-id="event-menu">
                 <span class="material-symbols-outlined">event</span>
                 <h3>Event</h3>
                 <span class="message-count">26</span> 
             </a>
             @endif
+            @endif
             @if ($role != 'expert')
             @if ($role != 'admin')
+            @if ($role != 'guest')
             <a href="#" id="event-link" data-menu-id="meeting-menu">
                 <span class="material-symbols-outlined">groups</span>
                 <h3>Meeting</h3>
                 <span class="message-count" id="invitation-count"></span>
             </a>
+            @endif
             @endif
             @endif
             <a href="#">
@@ -65,7 +70,7 @@
 <div class="menu" id="user-menu">
     <ul>
         <!-- Menu items for User -->
-        @if ($role != 'admin')
+        @if ($role != 'admin' && $role != 'guest')
         <li><a href="{{ route($role.'.profile.edit') }}">Edit Profile</a></li>
         @endif
         <li><a href="{{ route('users.List') }}">list Users</a></li>
@@ -79,13 +84,15 @@
     <ul>
             <!-- Menu items for Resources -->
             @if ($role != 'admin')
-            @if ($role == 'guest')
+       
             <li><a href="{{ route('ads.create') }}">Create Ads</a></li>
+            @if ($role != 'guest')
             <li><a href="{{ route('ads.list') }}" >My List Ads</a></li>
             @endif
             @endif
+            @if ($role != 'guest')
             <li><a href="{{ route('ads.demandes_pub') }}" >List demande Pub</a></li>
-            
+            @endif
           
     </ul>
 </div>

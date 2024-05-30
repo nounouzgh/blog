@@ -1,11 +1,15 @@
 <!-- x-navigation.blade.php -->
 
 @props(['role'])
+
 @php
-           $user = Auth::guard('compte')->user()->user;
+          
+            $authUser = Auth::guard('compte')->user();
+            $user = $authUser ? $authUser->user : null;
 
 @endphp
 <ul>
+    @if ($user)
     @if ($user->role->name != 'admin')
     <li>
       
@@ -13,6 +17,7 @@
                 {{ __('Profile') }}
             </x-dropdown-link>
     </li>
+    @endif
     @endif
     <li>
         <!-- Authentication -->
